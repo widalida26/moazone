@@ -1,5 +1,103 @@
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url('styles/fonts/NotoSansKR-Light.woff2') format('woff2'),
+    url('styles/fonts/NotoSansKR-Light.woff') format('woff'),
+    url('styles/fonts/NotoSansKR-Light.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: normal;
+  src: url('styles/fonts/NotoSansKR-Regular.woff2') format('woff2'),
+    url('styles/fonts/NotoSansKR-Regular.woff') format('woff'),
+    url('styles/fonts/NotoSansKR-Regular.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url('styles/fonts/NotoSansKR-Medium.woff2') format('woff2'),
+    url('styles/fonts/NotoSansKR-Medium.woff') format('woff'),
+    url('styles/fonts/NotoSansKR-Medium.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: bold;
+  src: url('styles/fonts/NotoSansKR-Bold.woff2') format('woff2'),
+    url('styles/fonts/NotoSansKR-Bold.woff') format('woff'),
+    url('styles/fonts/NotoSansKR-Bold.otf') format('truetype');
+}
+
 body {
+  background: linear-gradient(to right, #2bc0e4, #9198e5);
+  font-family: 'Noto Sans CJK KR';
+}
+
+input {
+  --webkit-box-shadow: 0 0 0px 1000px snow inset;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-color: #6eaebd;
+  color: darkslategray;
+  font-size: 1.2em;
+  padding: 5px;
+}
+
+.input::placeholder {
+  color: rgb(188, 188, 188);
+}
+
+/* login page */
+.login-container {
   background-color: snow;
+  text-align: center;
+  color: #005368;
+  width: 450px;
+  height: 445px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -225px;
+  margin-top: -225px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-icon {
+  margin-top: 30px;
+}
+
+.login-order {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2em;
+  color: #1d98b6;
+  white-space: pre-line;
+  margin-top: -15px;
+}
+
+.info-input {
+  width: 340px;
+}
+
+.login-button {
+  background: linear-gradient(to right, #2bc0e4, #9198e5);
+  width: 350px;
+  height: 35px;
+  margin-bottom: 40px;
+  border: none;
+  color: snow;
+  font-size: 1.2em;
+  letter-spacing: 5px;
 }
 
 .event-title {
@@ -67,125 +165,3 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* li:nth-child(2) .text {
-  background-color: #00dc93;
-}
-li:nth-child(3) .text {
-  background-color: rgb(189, 189, 255);
-}
-li:nth-child(4) .text {
-  background-color: rgb(138, 138, 250);
-}
-li:nth-child(5) .text {
-  background-color: rgb(67, 67, 108);
-}
-li:nth-child(6) .text {
-  background-color: rgb(131, 131, 165);
-}
-li:nth-child(7) .text {
-  background-color: rgb(168, 144, 219);
-} */
-/* li:nth-child(8) .text {
-  background-color: rgba(132, 174, 191);
-}
-li:nth-child(9) .text {
-  background-color: rgb(99, 153, 174);
-}
-li:nth-child(10) .text {
-  background-color: rgba(18, 97, 128, 0.461);
-}
-li:nth-child(11) .text {
-  background-color: rgba(41, 80, 132, 0.461);
-}
-li:nth-child(12) .text {
-  background-color: rgba(33, 51, 75, 0.461);
-} */
-
-/* li:nth-child(2) {
-  transform: rotate(0deg) skewY(360deg);
-}
-li:nth-child(3) {
-  transform: rotate(90deg) skewY(120deg);
-}
-li:nth-child(4) {
-  transform: rotate(90deg) skewY(-60deg);
-}
-li:nth-child(5) {
-  transform: rotate(120deg) skewY(-60deg);
-}
-li:nth-child(6) {
-  transform: rotate(150deg) skewY(-60deg);
-}
-li:nth-child(7) {
-  transform: rotate(180deg) skewY(-60deg);
-} */
-/* li:nth-child(8) {
-  transform: rotate(210deg) skewY(-60deg);
-}
-li:nth-child(9) {
-  transform: rotate(240deg) skewY(-60deg);
-}
-li:nth-child(10) {
-  transform: rotate(270deg) skewY(-60deg);
-}
-li:nth-child(11) {
-  transform: rotate(300deg) skewY(-60deg);
-}
-li:nth-child(12) {
-  transform: rotate(330deg) skewY(-60deg);
-} */
-/* 
-.circle {
-  width: 30em;
-  height: 30em;
-  position: relative;
-  padding: 0;
-  margin: 1em auto;
-  border-radius: 50%;
-  list-style: none;
-  overflow: hidden;
-}
-li {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 50%;
-  transform-origin: 0% 100%;
-}
-.text {
-  position: absolute;
-  left: -100%;
-  width: 200%;
-  height: 200%;
-  text-align: center;
-  display: block;
-  transform: skewY(60deg) rotate(50deg);
-  padding-top: 20px;
-  cursor: pointer;
-}
-
-.spin-button {
-  position: absolute;
-  left: 45%;
-  width: 120px;
-  height: 40px;
-  background-color: black;
-  border-radius: 30px;
-  margin-top: 20px;
-  cursor: pointer;
-  outline: none;
-  color: white;
-  font-size: 18px;
-}
-
-.spin {
-  animation: rotation 1s linear infinite;
-}
-@keyframes rotation {
-  100% {
-    transform: rotate(360deg);
-  }
-} */
