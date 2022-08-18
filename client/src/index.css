@@ -50,10 +50,6 @@ input {
   padding: 5px;
 }
 
-.input::placeholder {
-  color: rgb(188, 188, 188);
-}
-
 /* login page */
 .login-container {
   background-color: snow;
@@ -68,7 +64,7 @@ input {
   margin-top: -225px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .info-icon {
@@ -79,25 +75,31 @@ input {
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 1.95em;
   color: #1d98b6;
   white-space: pre-line;
-  margin-top: -15px;
+  margin-top: 12px;
 }
 
 .info-input {
   width: 340px;
+  margin-top: 25px;
+}
+
+.info-input::placeholder {
+  color: lightgray;
 }
 
 .login-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   width: 350px;
-  height: 35px;
-  margin-bottom: 40px;
+  height: 40px;
   border: none;
   color: snow;
   font-size: 1.2em;
   letter-spacing: 5px;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 .event-title {
