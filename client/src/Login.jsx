@@ -1,31 +1,56 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { setToken } from './Auth';
 
 function Login() {
-  const [inputId, setInputId] = useState('');
-  const [inputPw, setInputPw] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleInputId = (e) => {
-    setInputId(e.target.value);
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
   };
 
-  const handleInputPw = (e) => {
-    setInputPw(e.target.value);
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
   };
 
   const onClickLogin = () => {
     console.log('click login');
+    if ((username === '') & (password === '')) {
+      return;
+    } else {
+      axios
+        .post('http://localhost:8000/login', {
+          username: username,
+          password: password,
+        })
+        .then(function (response) {
+          if (response.data.token) {
+            setToken(response.data.token);
+            console.log(response.data.token);
+          }
+        })
+        .catch(function (err) {
+          console.log('err', err);
+        });
+    }
   };
 
   return (
     <div>
-      <h2>Login</h2>
+      Å<h2>Login</h2>
       <div>
-        <label htmlFor="input_id">ID : </label>
-        <input type="text" name="input_id" value={inputId} onChange={handleInputId} />
+        <label htmlFor="username">ID : </label>
+        <input type="text" name="username" value={username} onChange={handleUsername} />
       </div>
       <div>
-        <label htmlFor="input_pw">PW : </label>
-        <input type="password" name="input_pw" value={inputPw} onChange={handleInputPw} />
+        <label htmlFor="password">PW : </label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handlePassword}
+        />
       </div>
       <div>
         <button type="button" onClick={onClickLogin}>
