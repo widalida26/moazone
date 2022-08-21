@@ -40,7 +40,6 @@ body {
 }
 
 input {
-  --webkit-box-shadow: 0 0 0px 1000px snow inset;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
@@ -81,9 +80,49 @@ input {
   margin-top: 12px;
 }
 
+.form-guide {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  position: absolute;
+  float: left;
+  margin-top: 15px;
+  left: 50px;
+}
+
 .info-input {
   width: 340px;
-  margin-top: 25px;
+  margin-top: 40px;
+  outline: none;
+}
+
+.info-input:focus {
+  outline: none;
+}
+
+.id-first {
+  letter-spacing: 1px;
+  position: relative;
+  width: 90px;
+  margin-left: -255px;
+  margin-right: 0px;
+  padding-right: 0px;
+  z-index: 1;
+}
+
+.id-last {
+  position: absolute;
+  width: 250px;
+  margin-left: 0px;
+  padding-left: 0px;
+  pointer-events: none;
+}
+
+.id-last:focus {
+  outline: none;
+}
+
+.typed {
+  pointer-events: auto;
 }
 
 .info-input::placeholder {
