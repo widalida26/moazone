@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from './Auth';
 import { HiInformationCircle } from 'react-icons/hi';
 
-function Login() {
+function Enter() {
   const [username, setUsername] = useState('');
   const [idFirst, setIdFirst] = useState('');
   const [idLast, setIdLast] = useState('');
@@ -12,6 +13,7 @@ function Login() {
   const idFirstRef = useRef();
   const idLastRef = useRef();
   const phoneNumberRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (idLast.length > 0) {
@@ -103,25 +105,26 @@ function Login() {
     }
   };
 
-  const onClickLogin = () => {
-    if ((username === '') & (idFirst === '')) {
-      return;
-    } else {
-      axios
-        .post('http://localhost:8000/login', {
-          username: username,
-          idNumber: idFirst,
-        })
-        .then(function (response) {
-          if (response.data.token) {
-            setToken(response.data.token);
-            console.log(response.data.token);
-          }
-        })
-        .catch(function (err) {
-          console.log('err', err);
-        });
-    }
+  const onClickEnter = () => {
+    navigate('/consent');
+    // if ((username === '') & (idFirst === '')) {
+    //   return;
+    // } else {
+    //   axios
+    //     .post('http://localhost:8000/login', {
+    //       username: username,
+    //       idNumber: idFirst,
+    //     })
+    //     .then(function (response) {
+    //       if (response.data.token) {
+    //         setToken(response.data.token);
+    //         console.log(response.data.token);
+    //       }
+    //     })
+    //     .catch(function (err) {
+    //       console.log('err', err);
+    //     });
+    // }
   };
 
   return (
@@ -130,14 +133,13 @@ function Login() {
         <div className="info-icon">
           <HiInformationCircle size="50" color="#1d98b6" />
         </div>
-        <div className="login-order">Enter your information</div>
+        <div className="input-guide">Enter your information</div>
         <div className="username-container">
           <div className="form-guide">Name</div>
           <input
             className="info-input"
             type="text"
             value={username}
-            // ref={usernameRef}
             onChange={handleUsername}
           />
         </div>
@@ -171,7 +173,7 @@ function Login() {
           />
         </div>
         <div>
-          <button className="login-button" type="button" onClick={onClickLogin}>
+          <button className="enter-button" type="button" onClick={onClickEnter}>
             ENTER
           </button>
         </div>
@@ -180,4 +182,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Enter;

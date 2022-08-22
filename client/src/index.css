@@ -44,19 +44,17 @@ input {
   border-left: 0px;
   border-right: 0px;
   border-color: #6eaebd;
+  padding: 5px;
   color: darkslategray;
   font-size: 1.2em;
-  padding: 5px;
 }
 
-/* login page */
+/* enter page */
 .login-container {
   background-color: snow;
-  text-align: center;
-  color: #005368;
+  position: absolute;
   width: 450px;
   height: 445px;
-  position: absolute;
   left: 50%;
   top: 50%;
   margin-left: -225px;
@@ -64,29 +62,31 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  color: #005368;
+  text-align: center;
 }
 
 .info-icon {
   margin-top: 30px;
 }
 
-.login-order {
+.input-guide {
+  white-space: pre-line;
+  margin-top: 12px;
+  color: #1d98b6;
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: bold;
   font-size: 1.95em;
-  color: #1d98b6;
-  white-space: pre-line;
-  margin-top: 12px;
 }
 
 .form-guide {
-  font-family: 'Noto Sans CJK KR';
-  font-style: normal;
   position: absolute;
   float: left;
-  margin-top: 15px;
   left: 50px;
+  margin-top: 15px;
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
 }
 
 .info-input {
@@ -100,36 +100,31 @@ input {
 }
 
 .id-first {
-  letter-spacing: 1px;
   position: relative;
   width: 90px;
+  padding-right: 0px;
   margin-left: -255px;
   margin-right: 0px;
-  padding-right: 0px;
   z-index: 1;
+  letter-spacing: 1px;
 }
 
 .id-last {
   position: absolute;
   width: 250px;
-  margin-left: 0px;
   padding-left: 0px;
-  /* pointer-events: none; */
+  margin-left: 0px;
 }
 
 .id-last:focus {
   outline: none;
 }
 
-/* .typed {
-  pointer-events: auto;
-} */
-
 .info-input::placeholder {
   color: lightgray;
 }
 
-.login-button {
+.enter-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   width: 350px;
   height: 40px;
@@ -137,42 +132,105 @@ input {
   color: snow;
   font-size: 1.2em;
   letter-spacing: 5px;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 40px;
 }
 
+.enter-button:hover {
+  background: linear-gradient(to right, #e0dd2a, #2fde60);
+}
+
+/* check page*/
+.consent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-guide {
+  background-color: snow;
+  max-width: 1000px;
+  min-width: 500px;
+  max-height: 500px;
+  min-height: 400px;
+  top: 50%;
+  left: 50%;
+  margin-top: 100px;
+  overflow-y: auto;
+}
+
+.info-img {
+  width: 100%;
+  margin: 0px;
+}
+
+.check-container {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: snow;
+  font-size: 0.9em;
+}
+
+.checkbox {
+  position: relative;
+  width: 20px;
+  height: 15px;
+  left: -243px;
+  bottom: -20px;
+  /* padding-top: 10px; */
+}
+
+.consent-button {
+  background: linear-gradient(to right, #1c849e, #656ba3);
+  width: 350px;
+  height: 40px;
+  margin-top: 20px;
+  border: none;
+  color: snow;
+  font-size: 1.2em;
+  letter-spacing: 5px;
+}
+
+.consent-button:hover {
+  background: linear-gradient(to right, #e0dd2a, #2fde60);
+}
+
 .event-title {
+  padding-top: 10px;
+  padding-bottom: 5px;
   text-align: center;
   font-size: large;
   color: rgb(27, 26, 44);
-  padding-top: 10px;
-  padding-bottom: 5px;
 }
 
 .spin-content {
   position: relative;
+  min-width: 800px;
   margin: 20px auto;
   text-align: center;
-  min-width: 800px;
 }
 
 .button-wrap {
   position: absolute;
-  text-align: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .spin-button {
+  background-color: rgb(85, 80, 221);
   width: 150px;
   height: 150px;
   border-radius: 75px;
-  background-color: rgb(85, 80, 221);
-  cursor: pointer;
   border: none;
-  font-size: 40px;
   color: white;
+  font-size: 40px;
+  cursor: pointer;
 }
 
 .arrow-wrap {
@@ -184,10 +242,10 @@ input {
 .arrow {
   width: 0;
   height: 0;
+  z-index: 1;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
   border-top: 100px solid darkblue;
-  z-index: 1;
 }
 
 .on {
