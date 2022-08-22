@@ -42,7 +42,6 @@ function Login() {
       result += value[i];
     }
 
-    console.log(result);
     idFirstRef.current.value = result;
 
     const regex = /^[0-9|-]{0,13}$/;
@@ -52,6 +51,9 @@ function Login() {
   };
 
   const handleIdLast = (e) => {
+    if (idFirst.length === 0) {
+      idFirstRef.current.focus();
+    }
     const regex = /^[0-9]{0,6}$/;
     if (regex.test(e.target.value)) {
       setIdLast(e.target.value);
@@ -90,7 +92,6 @@ function Login() {
   };
 
   const handleLastKeyDown = (e) => {
-    console.log('?????');
     if (idLast === '') {
       switch (e.code) {
         case 'Backspace':
