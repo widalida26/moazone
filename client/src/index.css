@@ -50,18 +50,27 @@ input {
 }
 
 /* enter page */
-.login-container {
+.enter-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
   background-color: snow;
-  position: absolute;
-  width: 450px;
+  width: 60%;
+  max-width: 1000px;
+  min-width: 500px;
   height: 445px;
-  left: 50%;
-  top: 50%;
-  margin-left: -225px;
-  margin-top: -225px;
+  margin: 0px;
+  margin-top: 50px;
+  overflow: auto;
+  flex-basis: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   color: #005368;
   text-align: center;
 }
@@ -80,54 +89,69 @@ input {
   font-size: 1.95em;
 }
 
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-guide {
-  position: absolute;
-  float: left;
-  left: 50px;
-  margin-top: 15px;
+  margin-top: 30px;
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
 }
 
 .info-input {
   width: 340px;
-  margin-top: 40px;
+  margin-top: 15px;
   outline: none;
+  text-align: center;
 }
 
 .info-input:focus {
   outline: none;
 }
 
+.id-input {
+  display: flex;
+}
+
 .id-first {
-  position: relative;
-  width: 90px;
-  padding-right: 0px;
-  margin-left: -255px;
-  margin-right: 0px;
-  z-index: 1;
-  letter-spacing: 1px;
+  width: 150px;
+  text-align: right;
+}
+
+.idHypen {
+  width: 30px;
+}
+
+.idGender {
+  width: 10px;
 }
 
 .id-last {
-  position: absolute;
-  width: 250px;
-  padding-left: 0px;
-  margin-left: 0px;
+  width: 130px;
+  text-align: left;
 }
 
-.id-last:focus {
-  outline: none;
+.radio-container {
+  min-width: 150px;
+  max-width: 340px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.info-input::placeholder {
-  color: lightgray;
+.radio-input {
+  margin-top: 15px;
+  display: flex;
 }
 
 .enter-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   width: 350px;
-  height: 40px;
+  min-height: 40px;
   border: none;
   color: snow;
   font-size: 1.2em;

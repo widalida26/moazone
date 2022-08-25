@@ -3,16 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from './Auth';
 import { HiInformationCircle } from 'react-icons/hi';
+import InputForm from './Components/InputForm';
+import RadioForm from './Components/RadioForm';
 
 function Enter() {
   const [username, setUsername] = useState('');
   const [idFirst, setIdFirst] = useState('');
+  const [idGender, setIdGender] = useState('');
   const [idLast, setIdLast] = useState('');
   const [lastClass, setLastClass] = useState('info-input id-last');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [gender, setGender] = useState('Male');
+  const [carOwnership, setCarOwnership] = useState('Yes');
   const idFirstRef = useRef();
+  const idGenderRef = useRef();
   const idLastRef = useRef();
   const phoneNumberRef = useRef();
+  const answerList = ['Yes', 'No'];
+  const genderList = ['Male', 'Female'];
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,37 +37,43 @@ function Enter() {
     setUsername(result);
   };
 
-  const handleIdFirst = (e) => {
-    const value = idFirstRef.current.value.replace(/\D+/g, '');
-    const numberLength = 13;
-
-    let result = '';
-    for (let i = 0; i < value.length && i < numberLength; i++) {
-      if (i === 6) {
-        result += '-';
-      }
-      if (i >= 6) {
-        idLastRef.current.focus();
-      }
-
-      result += value[i];
-    }
-
-    idFirstRef.current.value = result;
-
-    const regex = /^[0-9|-]{0,13}$/;
+  const handleInputValue = (e, inputLength, setValue) => {
+    const regex = new RegExp(`[0-9]{0,${inputLength}}`);
+    // const regex = /^[0-9|-]{0,inputLength}$/;
     if (regex.test(e.target.value)) {
-      setIdFirst(e.target.value);
+      setValue(e.target.value);
+    }
+  };
+
+  const handleOnKeyDown = (inputValue, inputLength, nextRef) => {
+    if (inputValue.length >= inputLength) {
+      nextRef.current.focus();
     }
   };
 
   const handleIdLast = (e) => {
-    if (idFirst.length === 0) {
-      idFirstRef.current.focus();
-    }
     const regex = /^[0-9]{0,6}$/;
     if (regex.test(e.target.value)) {
       setIdLast(e.target.value);
+    }
+  };
+
+  const onClickIdLast = (e) => {
+    if (idGender.length === 0) {
+      idGenderRef.current.focus();
+    }
+    idGenderRef.current.focus();
+  };
+
+  const OnKeyDownLastId = (e) => {
+    if (idLast === '') {
+      switch (e.code) {
+        case 'Backspace':
+          idGender.current.focus();
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -93,20 +108,12 @@ function Enter() {
     }
   };
 
-  const handleLastKeyDown = (e) => {
-    if (idLast === '') {
-      switch (e.code) {
-        case 'Backspace':
-          idFirstRef.current.focus();
-          break;
-        default:
-          break;
-      }
-    }
+  const handleRadio = (e, setValue) => {
+    setValue(e.target.value);
   };
 
   const onClickEnter = () => {
-    navigate('/consent');
+    // navigate('/consent');
     // if ((username === '') & (idFirst === '')) {
     //   return;
     // } else {
@@ -128,55 +135,65 @@ function Enter() {
   };
 
   return (
-    <div>
-      <div className="login-container">
+    <div className="enter-container">
+      <div className="form-container">
         <div className="info-icon">
           <HiInformationCircle size="50" color="#1d98b6" />
         </div>
         <div className="input-guide">Enter your information</div>
-        <div className="username-container">
-          <div className="form-guide">Name</div>
-          <input
-            className="info-input"
-            type="text"
-            value={username}
-            onChange={handleUsername}
-          />
-        </div>
-        <div>
+        <InputForm guide="Name" value={username} onChange={handleUsername} />
+        <div className="input-container">
           <div className="form-guide">Identification Number</div>
-          <input
-            className="info-input id-first"
-            type="text"
-            value={idFirst}
-            ref={idFirstRef}
-            onChange={handleIdFirst}
-          />
-          <input
-            className={lastClass}
-            type="password"
-            value={idLast}
-            ref={idLastRef}
-            onChange={handleIdLast}
-            onKeyDown={handleLastKeyDown}
-            autoComplete="new-password"
-          />
+          <div className="id-input">
+            <input
+              className="info-input id-first"
+              type="text"
+              value={idFirst}
+              ref={idFirstRef}
+              onChange={(event) => handleInputValue(event, 6, setIdFirst)}
+              onKeyDown={() => handleOnKeyDown(idFirst, 6, idGenderRef)}
+            />
+            <input className="info-input idHypen" value="-" disabled />
+            <input
+              className="info-input idGender"
+              value={idGender}
+              ref={idGenderRef}
+              onChange={(event) => handleInputValue(event, 1, setIdGender)}
+              onKeyDown={() => handleOnKeyDown(idGender, 1, idLastRef)}
+            />
+            <input
+              className={lastClass}
+              type="password"
+              autoComplete="new-password"
+              value={idLast}
+              ref={idLastRef}
+              onChange={handleIdLast}
+              onKeyDown={OnKeyDownLastId}
+              onClick={onClickIdLast}
+            />
+          </div>
         </div>
-        <div>
-          <div className="form-guide">Phone Number</div>
-          <input
-            className="info-input"
-            type="phoneNumber"
-            value={phoneNumber}
-            ref={phoneNumberRef}
-            onChange={handlePhoneNumber}
-          />
-        </div>
-        <div>
-          <button className="enter-button" type="button" onClick={onClickEnter}>
-            ENTER
-          </button>
-        </div>
+        <InputForm
+          guide="Phone Number"
+          value={phoneNumber}
+          inputRef={phoneNumberRef}
+          onChange={handlePhoneNumber}
+        />
+        <RadioForm
+          guide="Gender"
+          list={genderList}
+          state={gender}
+          onClick={(event) => handleRadio(event, setGender)}
+        />
+        <RadioForm
+          guide="Car Ownership"
+          list={answerList}
+          state={carOwnership}
+          onClick={(event) => handleRadio(event, setCarOwnership)}
+        />
+        <button className="enter-button" type="button" onChange={onClickEnter}>
+          ENTER
+        </button>
       </div>
     </div>
   );
