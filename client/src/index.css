@@ -149,19 +149,25 @@ input {
 }
 
 .radio-container {
-  min-width: 150px;
+  max-width: 340px;
+  min-width: 120px;
+  margin-left: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .radio-input {
-  max-width: 20px;
+  /* max-width: 100px;
+  min-width: 20px; */
   margin-top: 20px;
   margin-bottom: 10px;
   display: flex;
-  justify-content: center;
-  /* text-align: center; */
+}
+
+.radio-select {
+  width: 20px;
+  margin-right: 20px;
 }
 
 .select-container {
@@ -193,7 +199,7 @@ input {
   color: snow;
   font-size: 1.2em;
   letter-spacing: 5px;
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 40px;
 }
 

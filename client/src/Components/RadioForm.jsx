@@ -11,6 +11,7 @@ const RadioForm = (props) => {
             <div className="radio-input">
               {value}{' '}
               <input
+                className="radio-select"
                 value={value[0]}
                 type="radio"
                 checked={props.state === value[0]}

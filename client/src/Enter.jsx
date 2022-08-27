@@ -13,6 +13,7 @@ import {
   familyTypeList,
   houseTypeList,
   occupationTypeList,
+  creditLevelList,
 } from './List';
 
 function Enter() {
@@ -40,6 +41,7 @@ function Enter() {
   const [occupationType, setOccupationType] = useState(houseTypeList[0]);
   const [familyNumber, setFamilyNumber] = useState('');
   const [creditMonth, setCreditMonth] = useState(new Date(2022, 0));
+  const [creditLevel, setCreditLevel] = useState(creditLevelList[0]);
 
   // use ref
   const idFirstRef = useRef();
@@ -166,7 +168,7 @@ function Enter() {
   // };
 
   const onClickEnter = () => {
-    // navigate('/consent');
+    navigate('/consent');
     // if ((username === '') & (idFirst === '')) {
     //   return;
     // } else {
@@ -265,27 +267,27 @@ function Enter() {
         />
         <SelectForm
           guide="Income Type"
+          list={incomeTypeList}
           value={incomeType}
           onSelect={(event) => handleSelect(event, setIncomeType)}
-          list={incomeTypeList}
         />
         <SelectForm
           guide="Education Type"
+          list={eduTypeList}
           value={eduType}
           onSelect={(event) => handleSelect(event, setEduType)}
-          list={eduTypeList}
         />
         <SelectForm
           guide="Family Type"
+          list={familyTypeList}
           value={familyType}
           onSelect={(event) => handleSelect(event, setFamilyType)}
-          list={familyTypeList}
         />
         <SelectForm
           guide="House Type"
+          list={houseTypeList}
           value={houseType}
           onSelect={(event) => handleSelect(event, setHouseType)}
-          list={houseTypeList}
         />
         <DateForm guide="Date of Birth" date={birthDate} setDate={setBirthDate} />
         <DateForm
@@ -310,9 +312,9 @@ function Enter() {
         />
         <SelectForm
           guide="Occupation Type"
+          list={occupationTypeList}
           value={occupationType}
           onSelect={(event) => handleSelect(event, setOccupationType)}
-          list={occupationTypeList}
         />
         <InputForm
           guide="Family Number"
@@ -325,7 +327,12 @@ function Enter() {
           setDate={setCreditMonth}
           noDate={true}
         />
-
+        <RadioForm
+          guide="Credit Level"
+          list={creditLevelList}
+          state={creditLevel}
+          onClick={(event) => handleRadio(event, setCreditLevel)}
+        />
         <button className="enter-button" type="button" onChange={onClickEnter}>
           ENTER
         </button>

@@ -50,4 +50,13 @@ const occupationTypeList = [
   'Waiters / Barmen Staff',
 ];
 
-export { incomeTypeList, eduTypeList, familyTypeList, houseTypeList, occupationTypeList };
+const creditLevelList = ['High', 'Medium', 'Low'];
+
+export {
+  incomeTypeList,
+  eduTypeList,
+  familyTypeList,
+  houseTypeList,
+  occupationTypeList,
+  creditLevelList,
+};
