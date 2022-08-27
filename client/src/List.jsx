@@ -28,4 +28,26 @@ const houseTypeList = [
   'With parents',
 ];
 
-export { incomeTypeList, eduTypeList, familyTypeList, houseTypeList };
+const occupationTypeList = [
+  'No Occupation',
+  'Accountants',
+  'Cleaning Staff',
+  'Cooking Staff',
+  'Core Staff',
+  'Driver',
+  'High Skill Tech Staff',
+  'HR Staff',
+  'IT Staff',
+  'Laborers',
+  'Low Skill Laborers',
+  'Managers',
+  'Medicine Staff',
+  'Private Service Staff',
+  'Reality Agent',
+  'Sales Staff',
+  'Secretary',
+  'Security Staff',
+  'Waiters / Barmen Staff',
+];
+
+export { incomeTypeList, eduTypeList, familyTypeList, houseTypeList, occupationTypeList };

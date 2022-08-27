@@ -7,9 +7,16 @@ import InputForm from './Components/InputForm';
 import RadioForm from './Components/RadioForm';
 import SelectForm from './Components/SelectForm';
 import DateForm from './Components/DateForm';
-import { incomeTypeList, eduTypeList, familyTypeList, houseTypeList } from './List';
+import {
+  incomeTypeList,
+  eduTypeList,
+  familyTypeList,
+  houseTypeList,
+  occupationTypeList,
+} from './List';
 
 function Enter() {
+  // use state
   const [username, setUsername] = useState('');
   const [idFirst, setIdFirst] = useState('');
   const [idGender, setIdGender] = useState('');
@@ -28,6 +35,13 @@ function Enter() {
   const [birthDate, setBirthDate] = useState(new Date(1995, 1, 6));
   const [employmentDate, setEmploymentDate] = useState(new Date(2019, 1, 12));
   const [cellphoneOwnership, setCellphoneOwnership] = useState('Y');
+  const [workPhoneOwnership, setWorkPhoneOwnership] = useState('Y');
+  const [phoneOwnership, setPhoneOwnership] = useState('Y');
+  const [occupationType, setOccupationType] = useState(houseTypeList[0]);
+  const [familyNumber, setFamilyNumber] = useState('');
+  const [creditMonth, setCreditMonth] = useState(new Date(2022, 0));
+
+  // use ref
   const idFirstRef = useRef();
   const idGenderRef = useRef();
   const idLastRef = useRef();
@@ -49,19 +63,36 @@ function Enter() {
     setUsername(result);
   };
 
-  const handleInputValue = (e, inputLength, setValue) => {
+  const handleInputValue = (e, inputLength, setValue, isSeparated) => {
     // const value = Number(e.target.value.replace(/(^0+)/, ''));
     const regex = new RegExp(`^[0-9|,]{0,${inputLength}}$`);
     if (regex.test(e.target.value)) {
-      const value = parseFloat(e.target.value.replace(/,/g, ''));
-      const separated = value ? value.toLocaleString() : '';
-      setValue(separated);
+      if (!isSeparated) {
+        setValue(e.target.value);
+      } else {
+        const value = isSeparated ? parseFloat(e.target.value.replace(/,/g, '')) : '';
+        const separated = value ? value.toLocaleString() : '';
+        setValue(separated);
+      }
     }
   };
 
-  const handleOnKeyDown = (inputValue, inputLength, nextRef) => {
-    if (inputValue.length >= inputLength) {
-      nextRef.current.focus();
+  const handleOnKeyDownId = (event, inputValue, inputLength, nextRef, prevRef) => {
+    if (nextRef) {
+      if (inputValue.length >= inputLength) {
+        nextRef.current.focus();
+      }
+    }
+    if (prevRef) {
+      if (inputValue === '') {
+        switch (event.code) {
+          case 'Backspace':
+            prevRef.current.focus();
+            break;
+          default:
+            break;
+        }
+      }
     }
   };
 
@@ -79,17 +110,17 @@ function Enter() {
     idGenderRef.current.focus();
   };
 
-  const OnKeyDownLastId = (e) => {
-    if (idLast === '') {
-      switch (e.code) {
-        case 'Backspace':
-          idGender.current.focus();
-          break;
-        default:
-          break;
-      }
-    }
-  };
+  // const OnKeyDownId = (e, prevRef) => {
+  //   if (idLast === '') {
+  //     switch (e.code) {
+  //       case 'Backspace':
+  //         prevRef.current.focus();
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   }
+  // };
 
   const handlePhoneNumber = (e) => {
     const value = phoneNumberRef.current.value.replace(/\D+/g, '');
@@ -173,7 +204,7 @@ function Enter() {
               value={idFirst}
               ref={idFirstRef}
               onChange={(event) => handleInputValue(event, 6, setIdFirst)}
-              onKeyDown={() => handleOnKeyDown(idFirst, 6, idGenderRef)}
+              onKeyDown={(event) => handleOnKeyDownId(event, idFirst, 6, idGenderRef)}
             />
             <input className="info-input idHypen" value="-" disabled />
             <input
@@ -181,7 +212,9 @@ function Enter() {
               value={idGender}
               ref={idGenderRef}
               onChange={(event) => handleInputValue(event, 1, setIdGender)}
-              onKeyDown={() => handleOnKeyDown(idGender, 1, idLastRef)}
+              onKeyDown={(event) =>
+                handleOnKeyDownId(event, idGender, 1, idLastRef, idFirstRef)
+              }
             />
             <input
               className={lastClass}
@@ -190,7 +223,9 @@ function Enter() {
               value={idLast}
               ref={idLastRef}
               onChange={handleIdLast}
-              onKeyDown={OnKeyDownLastId}
+              onKeyDown={(event) =>
+                handleOnKeyDownId(event, idLast, null, null, idGenderRef)
+              }
               onClick={onClickIdLast}
             />
           </div>
@@ -226,7 +261,7 @@ function Enter() {
           guide="Annual Income"
           unit="$"
           value={income}
-          onChange={(event) => handleInputValue(event, 10, setIncome)}
+          onChange={(event) => handleInputValue(event, 10, setIncome, true)}
         />
         <SelectForm
           guide="Income Type"
@@ -235,7 +270,7 @@ function Enter() {
           list={incomeTypeList}
         />
         <SelectForm
-          guide="Edu Type"
+          guide="Education Type"
           value={eduType}
           onSelect={(event) => handleSelect(event, setEduType)}
           list={eduTypeList}
@@ -258,6 +293,39 @@ function Enter() {
           date={employmentDate}
           setDate={setEmploymentDate}
         />
+        <RadioForm
+          guide="Cellphone Ownership"
+          state={cellphoneOwnership}
+          onClick={(event) => handleRadio(event, setCellphoneOwnership)}
+        />
+        <RadioForm
+          guide="Work Phone Ownership"
+          state={workPhoneOwnership}
+          onClick={(event) => handleRadio(event, setWorkPhoneOwnership)}
+        />
+        <RadioForm
+          guide="Phone Ownership"
+          state={phoneOwnership}
+          onClick={(event) => handleRadio(event, setPhoneOwnership)}
+        />
+        <SelectForm
+          guide="Occupation Type"
+          value={occupationType}
+          onSelect={(event) => handleSelect(event, setOccupationType)}
+          list={occupationTypeList}
+        />
+        <InputForm
+          guide="Family Number"
+          value={familyNumber}
+          onChange={(event) => handleInputValue(event, 2, setFamilyNumber)}
+        />
+        <DateForm
+          guide="Month of Credit Card Issue"
+          date={creditMonth}
+          setDate={setCreditMonth}
+          noDate={true}
+        />
+
         <button className="enter-button" type="button" onChange={onClickEnter}>
           ENTER
         </button>

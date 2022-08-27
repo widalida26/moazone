@@ -103,9 +103,11 @@ input {
 }
 
 .form-guide {
-  margin-top: 30px;
+  margin-top: 50px;
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
+  font-weight: 500;
+  font-size: 1.1em;
 }
 
 .info-input {
@@ -181,19 +183,8 @@ input {
 
 .react-datepicker-ignore-onclickoutside {
   text-align: center;
-  /* justify-content: center;
-  align-items: center; */
 }
 
-.react-datepicker-popper {
-  /* inset: 20% 20% 20% 20%; */
-  /* display: flex; */
-}
-/* .react-datepicker__month-container {
-  positoin: relative;
-  align-self: center;
-  text-align: center;
-} */
 .enter-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   width: 350px;
