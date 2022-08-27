@@ -6,11 +6,12 @@ const InputForm = (props) => {
       <div className="form-guide">{props.guide}</div>
       <input
         className="info-input"
-        type={props.type === null ? 'text' : props.type}
+        type={props.type ? props.type : 'text'}
         value={props.value}
-        ref={props.inputRef}
+        ref={props.inputRef ? props.inputRef : null}
         onChange={props.onChange}
       />
+      {props.unit ? <span class="input-unit">{props.unit}</span> : null}
     </div>
   );
 };

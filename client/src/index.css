@@ -40,13 +40,16 @@ body {
 }
 
 input {
+  width: 340px;
+  padding: 5px;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
   border-color: #6eaebd;
-  padding: 5px;
+  outline: none;
   color: darkslategray;
   font-size: 1.2em;
+  text-align: center;
 }
 
 /* enter page */
@@ -60,11 +63,14 @@ input {
 .form-container {
   background-color: snow;
   width: 60%;
-  max-width: 1000px;
-  min-width: 500px;
-  height: 445px;
+  height: 80%;
+  max-width: 800px;
+  min-width: 600px;
   margin: 0px;
   margin-top: 50px;
+  margin-bottom: 30px;
+  outline: 2px solid cadetblue;
+  outline-offset: -10px;
   overflow: auto;
   flex-basis: auto;
   display: flex;
@@ -105,7 +111,6 @@ input {
 .info-input {
   width: 340px;
   margin-top: 15px;
-  outline: none;
   text-align: center;
 }
 
@@ -135,19 +140,60 @@ input {
   text-align: left;
 }
 
+.input-unit {
+  position: relative;
+  left: 160px;
+  top: -25px;
+}
+
 .radio-container {
   min-width: 150px;
-  max-width: 340px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .radio-input {
-  margin-top: 15px;
+  max-width: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   display: flex;
+  justify-content: center;
+  /* text-align: center; */
 }
 
+.select-container {
+  margin-top: 20px;
+  max-width: 340px;
+  min-width: 300px;
+  height: 30px;
+  border-color: #6eaebd;
+  outline-color: #6eaebd;
+  color: darkslategray;
+  font-size: 1.1em;
+  text-indent: 5px;
+}
+
+.react-datepicker-wrapper {
+  margin-top: 10px;
+  width: 340px;
+}
+
+.react-datepicker-ignore-onclickoutside {
+  text-align: center;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.react-datepicker-popper {
+  /* inset: 20% 20% 20% 20%; */
+  /* display: flex; */
+}
+/* .react-datepicker__month-container {
+  positoin: relative;
+  align-self: center;
+  text-align: center;
+} */
 .enter-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   width: 350px;
