@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Main from './Main';
 import Enter from './Enter';
 import Consent from './Consent';
 import Event from './Event';
@@ -9,16 +10,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Enter />} />
+        <Route path="/" element={<Main />} />
+        <Route path="/enter" element={<Enter />} />
         <Route path="/consent" element={<Consent />} />
         <Route path="/event" element={<Event />} />
-
-        {/* <div>
-          {/* <Title /> */}
-        {/* 텍스트 변경4 */}
-        {/* <Login /> */}
-        {/* <Spinner /> */}
-        {/* // </div> */}
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import React from 'react';
 
 const Event = () => {
   const [isSpin, setIsSpin] = useState('spinner off');

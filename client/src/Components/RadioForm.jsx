@@ -15,7 +15,7 @@ const RadioForm = (props) => {
                 value={value[0]}
                 type="radio"
                 checked={props.state === value[0]}
-                onClick={props.onClick}
+                onChange={props.onChange}
               />
             </div>
           </React.Fragment>

@@ -162,12 +162,9 @@ function Enter() {
   const handleSelect = (selected, setValue) => {
     setValue(selected);
   };
-  // const addThousandsSeperator = (num) => {
-  // return num.toLocaleString();
-  // return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  // };
 
   const onClickEnter = () => {
+    console.log('enter');
     navigate('/consent');
     // if ((username === '') & (idFirst === '')) {
     //   return;
@@ -242,17 +239,17 @@ function Enter() {
           guide="Gender"
           list={genderList}
           state={gender}
-          onClick={(event) => handleRadio(event, setGender)}
+          onChange={(event) => handleRadio(event, setGender)}
         />
         <RadioForm
           guide="Car Ownership"
           state={carOwnership}
-          onClick={(event) => handleRadio(event, setCarOwnership)}
+          onChange={(event) => handleRadio(event, setCarOwnership)}
         />
         <RadioForm
           guide="Reality Ownership"
           state={realityOwnership}
-          onClick={(event) => handleRadio(event, setRealityOwnership)}
+          onChange={(event) => handleRadio(event, setRealityOwnership)}
         />
         <InputForm
           guide="Child Number"
@@ -289,26 +286,32 @@ function Enter() {
           value={houseType}
           onSelect={(event) => handleSelect(event, setHouseType)}
         />
-        <DateForm guide="Date of Birth" date={birthDate} setDate={setBirthDate} />
+        <DateForm
+          guide="Date of Birth"
+          date={birthDate}
+          setDate={setBirthDate}
+          dateFormat="yyyy.MM.dd"
+        />
         <DateForm
           guide="Date of Employment"
           date={employmentDate}
           setDate={setEmploymentDate}
+          dateFormat="yyyy.MM.dd"
         />
         <RadioForm
           guide="Cellphone Ownership"
           state={cellphoneOwnership}
-          onClick={(event) => handleRadio(event, setCellphoneOwnership)}
+          onChange={(event) => handleRadio(event, setCellphoneOwnership)}
         />
         <RadioForm
           guide="Work Phone Ownership"
           state={workPhoneOwnership}
-          onClick={(event) => handleRadio(event, setWorkPhoneOwnership)}
+          onChange={(event) => handleRadio(event, setWorkPhoneOwnership)}
         />
         <RadioForm
           guide="Phone Ownership"
           state={phoneOwnership}
-          onClick={(event) => handleRadio(event, setPhoneOwnership)}
+          onChange={(event) => handleRadio(event, setPhoneOwnership)}
         />
         <SelectForm
           guide="Occupation Type"
@@ -325,13 +328,14 @@ function Enter() {
           guide="Month of Credit Card Issue"
           date={creditMonth}
           setDate={setCreditMonth}
+          dateFormat="yyyy.MM"
           noDate={true}
         />
         <RadioForm
           guide="Credit Level"
           list={creditLevelList}
           state={creditLevel}
-          onClick={(event) => handleRadio(event, setCreditLevel)}
+          onChange={(event) => handleRadio(event, setCreditLevel)}
         />
         <button className="enter-button" type="button" onChange={onClickEnter}>
           ENTER

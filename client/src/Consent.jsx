@@ -18,13 +18,13 @@ const Consent = () => {
   };
 
   return (
-    <div class="consent-container">
-      <div class="info-guide">
+    <div className="consent-container">
+      <div className="info-guide">
         <img className="info-img" alt="consnet.png" src="/img/consent.png" />
       </div>
-      <div class="check-container">
+      <div className="check-container">
         <input
-          class="checkbox"
+          className="checkbox"
           type="checkbox"
           value={isConsent}
           onChange={handleCheckbox}

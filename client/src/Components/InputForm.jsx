@@ -11,7 +11,7 @@ const InputForm = (props) => {
         ref={props.inputRef ? props.inputRef : null}
         onChange={props.onChange}
       />
-      {props.unit ? <span class="input-unit">{props.unit}</span> : null}
+      {props.unit ? <span className="input-unit">{props.unit}</span> : null}
     </div>
   );
 };
