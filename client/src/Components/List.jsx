@@ -1,3 +1,5 @@
+const genderList = ['Male', 'Female'];
+
 const incomeTypeList = [
   'Working',
   'State Servent',
@@ -53,6 +55,7 @@ const occupationTypeList = [
 const creditLevelList = ['High', 'Medium', 'Low'];
 
 export {
+  genderList,
   incomeTypeList,
   eduTypeList,
   familyTypeList,

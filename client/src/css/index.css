@@ -2,58 +2,107 @@
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 100;
-  src: url('styles/fonts/NotoSansKR-Light.woff2') format('woff2'),
-    url('styles/fonts/NotoSansKR-Light.woff') format('woff'),
-    url('styles/fonts/NotoSansKR-Light.otf') format('truetype');
+  src: url('../styles/fonts/NotoSansKR-Light.woff2') format('woff2'),
+    url('../styles/fonts/NotoSansKR-Light.woff') format('woff'),
+    url('../styles/fonts/NotoSansKR-Light.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: normal;
-  src: url('styles/fonts/NotoSansKR-Regular.woff2') format('woff2'),
-    url('styles/fonts/NotoSansKR-Regular.woff') format('woff'),
-    url('styles/fonts/NotoSansKR-Regular.otf') format('truetype');
+  src: url('../styles/fonts/NotoSansKR-Regular.woff2') format('woff2'),
+    url('../styles/fonts/NotoSansKR-Regular.woff') format('woff'),
+    url('../styles/fonts/NotoSansKR-Regular.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 500;
-  src: url('styles/fonts/NotoSansKR-Medium.woff2') format('woff2'),
-    url('styles/fonts/NotoSansKR-Medium.woff') format('woff'),
-    url('styles/fonts/NotoSansKR-Medium.otf') format('truetype');
+  src: url('../styles/fonts/NotoSansKR-Medium.woff2') format('woff2'),
+    url('../styles/fonts/NotoSansKR-Medium.woff') format('woff'),
+    url('../styles/fonts/NotoSansKR-Medium.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: bold;
-  src: url('styles/fonts/NotoSansKR-Bold.woff2') format('woff2'),
-    url('styles/fonts/NotoSansKR-Bold.woff') format('woff'),
-    url('styles/fonts/NotoSansKR-Bold.otf') format('truetype');
+  src: url('../styles/fonts/NotoSansKR-Bold.woff2') format('woff2'),
+    url('../styles/fonts/NotoSansKR-Bold.woff') format('woff'),
+    url('../styles/fonts/NotoSansKR-Bold.otf') format('truetype');
 }
 
 body {
   background: linear-gradient(to right, #3877ec, #764fc3),
-    url('./styles/textures/texture.png');
+    url('../styles/textures/texture.png');
   background-size: cover;
   -webkit-background-size: cover;
   background-repeat: repeat;
   font-family: 'Noto Sans CJK KR';
+  /* overflow: hidden; */
 }
 
 input {
-  width: 340px;
-  padding: 5px;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
   border-color: #6eaebd;
+  width: 340px;
+  padding: 5px;
   outline: none;
   color: darkslategray;
   font-size: 1.2em;
   text-align: center;
+}
+
+.modal {
+  background-color: snow;
+  /* outline: 2px solid cadetblue;
+  outline-offset: 0px; */
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  height: 200px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  padding: 0px;
+  margin: -100px 0px 0px -200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+.modal-title {
+  background: linear-gradient(to right, #2bc0e4, #9198e5);
+  width: 100%;
+  height: 30px;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  color: white;
+  font-size: 0.8em;
+}
+
+.modal-button {
+  background: linear-gradient(to right, #2bc0e4, #9198e5);
+  border: none;
+  width: 200px;
+  height: 30px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.modal-button:hover {
+  background: linear-gradient(to right, #e0dd2a, #2fde60);
 }
 
 /* main page */
@@ -90,6 +139,8 @@ input {
 
 .form-container {
   background-color: snow;
+  outline: 2px solid cadetblue;
+  outline-offset: -10px;
   width: 60%;
   height: 80%;
   max-width: 800px;
@@ -97,11 +148,9 @@ input {
   margin: 0px;
   margin-top: 50px;
   margin-bottom: 30px;
-  outline: 2px solid cadetblue;
-  outline-offset: -10px;
-  overflow: auto;
-  flex-basis: auto;
+  overflow: scroll;
   display: flex;
+  flex-basis: auto;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -114,7 +163,6 @@ input {
 }
 
 .input-guide {
-  white-space: pre-line;
   margin-top: 12px;
   margin-bottom: 20px;
   color: #1d98b6;
@@ -123,6 +171,7 @@ input {
   font-weight: bold;
   font-size: 1.8em;
   letter-spacing: 2.5px;
+  white-space: pre-line;
 }
 
 .additional-guide {
@@ -155,28 +204,6 @@ input {
 .info-input:focus {
   outline: none;
 }
-
-/* .id-input {
-  display: flex;
-}
-
-.id-first {
-  width: 150px;
-  text-align: right;
-}
-
-.idHypen {
-  width: 30px;
-}
-
-.idGender {
-  width: 10px;
-}
-
-.id-last {
-  width: 130px;
-  text-align: left;
-} */
 
 .identification-container {
   margin-top: 30px;
@@ -216,12 +243,13 @@ input {
 }
 
 .select-container {
+  border-color: #6eaebd;
+  outline-color: #6eaebd;
   margin-top: 20px;
   max-width: 340px;
   min-width: 300px;
   height: 30px;
-  border-color: #6eaebd;
-  outline-color: #6eaebd;
+
   color: darkslategray;
   font-size: 1.1em;
   text-indent: 5px;
@@ -236,6 +264,7 @@ input {
   text-align: center;
 }
 
+/* kakao login */
 .kakao-button {
   background: linear-gradient(to right, #e3c00d, #f2ff00);
   border: none;
@@ -270,7 +299,7 @@ input {
   color: snow;
   font-size: 1.2em;
   letter-spacing: 5px;
-  margin-top: 30px;
+  margin-top: 60px;
   margin-bottom: 40px;
 }
 
@@ -402,3 +431,25 @@ input {
     transform: rotate(360deg);
   }
 }
+
+/* .id-input {
+  display: flex;
+}
+
+.id-first {
+  width: 150px;
+  text-align: right;
+}
+
+.idHypen {
+  width: 30px;
+}
+
+.idGender {
+  width: 10px;
+}
+
+.id-last {
+  width: 130px;
+  text-align: left;
+} */

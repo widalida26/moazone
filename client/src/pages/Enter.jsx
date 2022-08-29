@@ -1,12 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { setToken } from './Auth';
 import { HiInformationCircle } from 'react-icons/hi';
-import InputForm from './components/InputForm';
-import RadioForm from './components/RadioForm';
-import SelectForm from './components/SelectForm';
-import DateForm from './components/DateForm';
+import InputForm from '../components/InputForm';
+import RadioForm from '../components/RadioForm';
+import SelectForm from '../components/SelectForm';
+import DateForm from '../components/DateForm';
 import {
   incomeTypeList,
   eduTypeList,
@@ -14,7 +12,7 @@ import {
   houseTypeList,
   occupationTypeList,
   creditLevelList,
-} from './List';
+} from '../components/List';
 
 function Enter() {
   // use state

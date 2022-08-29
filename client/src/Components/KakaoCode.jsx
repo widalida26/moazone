@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Modal from './Modal';
 
 const KakaoCode = () => {
   const location = useLocation();
@@ -21,7 +22,11 @@ const KakaoCode = () => {
     getKakaoToken();
   }, []);
 
-  return <div></div>;
+  return (
+    <div>
+      <Modal message="이미 이벤트에 참여하셨습니다" />
+    </div>
+  );
 };
 
 export default KakaoCode;

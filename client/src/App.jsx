@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Main from './Main';
-import Identification from './Identification';
-import Enter from './Enter';
-import Consent from './Consent';
-import Event from './Event';
-import KakaoCode from './components/KakaoCode';
+import Main from './pages/Main';
+import Identification from './pages/Identification';
+import Survey from './pages/Survey';
+import Enter from './pages/Enter';
+import Consent from './pages/Consent';
+import Event from './pages/Event';
 
 function App() {
   return (
@@ -13,10 +13,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/identification" element={<Identification />} />
+        <Route path="/survey" element={<Survey />} />
         <Route path="/enter" element={<Enter />} />
         <Route path="/consent" element={<Consent />} />
         <Route path="/event" element={<Event />} />
-        <Route path="/token" element={<KakaoCode />} />
+        <Route path="/token" element={<Identification />} />
       </Routes>
     </BrowserRouter>
   );
