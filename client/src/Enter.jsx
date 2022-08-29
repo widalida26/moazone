@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from './Auth';
 import { HiInformationCircle } from 'react-icons/hi';
-import InputForm from './Components/InputForm';
-import RadioForm from './Components/RadioForm';
-import SelectForm from './Components/SelectForm';
-import DateForm from './Components/DateForm';
+import InputForm from './components/InputForm';
+import RadioForm from './components/RadioForm';
+import SelectForm from './components/SelectForm';
+import DateForm from './components/DateForm';
 import {
   incomeTypeList,
   eduTypeList,
@@ -25,8 +25,8 @@ function Enter() {
   const [lastClass, setLastClass] = useState('info-input id-last');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [gender, setGender] = useState('Male');
-  const [carOwnership, setCarOwnership] = useState('Y');
-  const [realityOwnership, setRealityOwnership] = useState('Y');
+  const [carOwnership, setCarOwnership] = useState('Yes');
+  const [realityOwnership, setRealityOwnership] = useState('Yes');
   const [childNumber, setChildNumber] = useState('');
   const [income, setIncome] = useState('');
   const [incomeType, setIncomeType] = useState(incomeTypeList[0]);
@@ -35,9 +35,9 @@ function Enter() {
   const [houseType, setHouseType] = useState(houseTypeList[0]);
   const [birthDate, setBirthDate] = useState(new Date(1995, 1, 6));
   const [employmentDate, setEmploymentDate] = useState(new Date(2019, 1, 12));
-  const [cellphoneOwnership, setCellphoneOwnership] = useState('Y');
-  const [workPhoneOwnership, setWorkPhoneOwnership] = useState('Y');
-  const [phoneOwnership, setPhoneOwnership] = useState('Y');
+  const [cellphoneOwnership, setCellphoneOwnership] = useState('Yes');
+  const [workPhoneOwnership, setWorkPhoneOwnership] = useState('Yes');
+  const [phoneOwnership, setPhoneOwnership] = useState('Yes');
   const [occupationType, setOccupationType] = useState(houseTypeList[0]);
   const [familyNumber, setFamilyNumber] = useState('');
   const [creditMonth, setCreditMonth] = useState(new Date(2022, 0));
@@ -337,7 +337,7 @@ function Enter() {
           state={creditLevel}
           onChange={(event) => handleRadio(event, setCreditLevel)}
         />
-        <button className="enter-button" type="button" onChange={onClickEnter}>
+        <button className="enter-button" type="button" onClick={onClickEnter}>
           ENTER
         </button>
       </div>

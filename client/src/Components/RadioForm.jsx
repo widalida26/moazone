@@ -12,9 +12,9 @@ const RadioForm = (props) => {
               {value}{' '}
               <input
                 className="radio-select"
-                value={value[0]}
+                value={value}
                 type="radio"
-                checked={props.state === value[0]}
+                checked={props.state === value}
                 onChange={props.onChange}
               />
             </div>

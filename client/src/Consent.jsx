@@ -30,7 +30,7 @@ const Consent = () => {
           onChange={handleCheckbox}
         />
         I agree to collect/use personal information to participate in the event
-        <button className="consent-button" onClick={onClickAgree}>
+        <button className="enter-button" onClick={onClickAgree}>
           AGREE
         </button>
       </div>

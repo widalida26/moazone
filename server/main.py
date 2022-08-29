@@ -1,25 +1,19 @@
 import fastapi 
-import jwt
-from pydantic import BaseModel
+import os  
+import requests
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
+from pydantic import BaseModel                                                                                                                                                                                                      
+from dotenv import load_dotenv, find_dotenv
+from pathlib import Path
+from db.session import SessionLocal
 
-SECERT_KEY = "YOUR_FAST_API_SECRET_KEY"
-ALGORITHM ="HS256"
-ACCESS_TOKEN_EXPIRES_MINUTES = 800
-
-test_user = {
-    "username": "admin",
-    "password": "kosa0401"
-}
+load_dotenv(Path(".env"))
 
 app = fastapi.FastAPI()
 
-origins = {
-    "http://localhost",
-    "http://localhost:3000"
-}
-
+origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins = origins,
@@ -27,21 +21,33 @@ app.add_middleware(
     allow_methods = ["*"]
 )
 
-class LoginItem(BaseModel):
-    username: str
-    password: str
+class AuthItem(BaseModel):
+    authcode: str
 
 @app.get('/')   
 def read_root():
     return {"Hello": "World"}
-    
-@app.post("/login")
-async def user_login(loginitem:LoginItem):
-    data = jsonable_encoder(loginitem)
-    print(data)
-    if data['username'] == test_user['username'] and data['password'] == test_user['password']:
-        encoded_jwt = jwt.encode(data, SECERT_KEY, algorithm=ALGORITHM)
-        return {"token": encoded_jwt}
-        print('jwt', encoded_jwt)
-    else:
-        return {"message":"login failed"}
+
+@app.post('/auth/kakao')
+async def kakao_auth(authItem: AuthItem):
+    kakao_auth_url = 'https://kauth.kakao.com/oauth/token'
+    auth_data = {
+    "grant_type" : "authorization_code",
+    "client_id" : os.environ.get('KAKAO_REST_API_KEY'),
+    "redirect_uri" : os.environ.get('CALLBACK_URL'),
+    "code" : authItem.authcode
+    }
+
+    # 인가 코드로 토큰 요청
+    response = requests.post(kakao_auth_url, data=auth_data)
+    token_data = response.json()
+    print(token_data)
+    access_token = token_data['access_token']
+
+    # 토큰으로 유저 데이터 요청
+    user_profile = requests.get(
+                'https://kapi.kakao.com//v2/user/me', 
+                headers={'Authorization' : 'Bearer {}'.format(access_token)}
+                )
+    print(user_profile.json())
+

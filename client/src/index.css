@@ -37,7 +37,8 @@
 body {
   background: linear-gradient(to right, #3877ec, #764fc3),
     url('./styles/textures/texture.png');
-  /* background-image:  */
+  background-size: cover;
+  -webkit-background-size: cover;
   background-repeat: repeat;
   font-family: 'Noto Sans CJK KR';
 }
@@ -62,43 +63,21 @@ input {
   justify-content: center;
   justify-items: center;
   align-items: center;
-  /* width: 70%;
-  height: 200px;
-  overflow: hidden; */
-}
-
-.img-container {
-  /* width: 60%; */
-
-  /* background-color: blue; */
 }
 
 .main-image {
-  width: 500px;
-  margin-top: -30px;
-  /* position: relative; */
-  /* max-width: 50%;
-  height: auto;
-  display: block; */
+  width: 600px;
+  margin-top: -60px;
 }
 
 .main-button {
-  background: linear-gradient(to right, #1b3970, #352359);
-  width: 300px;
-  height: 50px;
-  margin-top: -10px;
-  border: none;
-  border-radius: 10px;
-  /* color: rgb(255, 218, 9); */
-  color: rgb(255, 203, 15);
-  font-size: 1.2em;
-  font-weight: 500;
-  letter-spacing: 5px;
+  background: transparent !important;
+  margin-top: -600px !important;
+  font-size: 1.2em !important;
 }
 
 .main-button:hover {
-  background: linear-gradient(to right, #000000, #000000);
-  color: rgb(255, 203, 15);
+  color: rgb(255, 208, 0);
 }
 
 /* enter page */
@@ -137,11 +116,19 @@ input {
 .input-guide {
   white-space: pre-line;
   margin-top: 12px;
+  margin-bottom: 20px;
   color: #1d98b6;
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: bold;
-  font-size: 1.95em;
+  font-size: 1.8em;
+  letter-spacing: 2.5px;
+}
+
+.additional-guide {
+  margin-top: -3px;
+  font-size: 0.78em;
+  letter-spacing: 1px;
 }
 
 .input-container {
@@ -169,7 +156,7 @@ input {
   outline: none;
 }
 
-.id-input {
+/* .id-input {
   display: flex;
 }
 
@@ -189,6 +176,15 @@ input {
 .id-last {
   width: 130px;
   text-align: left;
+} */
+
+.identification-container {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.tokend {
+  display: none;
 }
 
 .input-unit {
@@ -240,6 +236,32 @@ input {
   text-align: center;
 }
 
+.kakao-button {
+  background: linear-gradient(to right, #e3c00d, #f2ff00);
+  border: none;
+  width: 400px;
+  min-height: 40px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 500;
+  letter-spacing: 5px;
+}
+
+.kakao-button:hover {
+  background: black;
+  color: yellow;
+}
+
+.kakao-image {
+  width: 320px;
+}
+
+.kakao-image:hover {
+  filter: opacity(0.9) drop-shadow(0 0 0 black);
+}
+
 .enter-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   width: 350px;
@@ -248,7 +270,7 @@ input {
   color: snow;
   font-size: 1.2em;
   letter-spacing: 5px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 40px;
 }
 
