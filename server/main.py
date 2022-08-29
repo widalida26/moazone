@@ -1,15 +1,12 @@
-import fastapi 
+import fastapi
 import os  
 import requests
-from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
 from pydantic import BaseModel                                                                                                                                                                                                      
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 from pathlib import Path
-from db.session import SessionLocal
-
-load_dotenv(Path(".env"))
+from connection import connect_engine
+from models import Users
 
 app = fastapi.FastAPI()
 
@@ -21,8 +18,23 @@ app.add_middleware(
     allow_methods = ["*"]
 )
 
+load_dotenv(Path(".env"))
+
+engine = connect_engine()
+session = engine.sessionmaker()
+
+
 class AuthItem(BaseModel):
     authcode: str
+
+class UserInfo(BaseModel):
+    id: int
+    user_id: str
+    class Config:
+        orm_mode=True
+
+def addUserId():
+    session.query(Users).all()
 
 @app.get('/')   
 def read_root():
@@ -41,7 +53,6 @@ async def kakao_auth(authItem: AuthItem):
     # 인가 코드로 토큰 요청
     response = requests.post(kakao_auth_url, data=auth_data)
     token_data = response.json()
-    print(token_data)
     access_token = token_data['access_token']
 
     # 토큰으로 유저 데이터 요청
@@ -49,5 +60,17 @@ async def kakao_auth(authItem: AuthItem):
                 'https://kapi.kakao.com//v2/user/me', 
                 headers={'Authorization' : 'Bearer {}'.format(access_token)}
                 )
-    print(user_profile.json())
+    user_id = user_profile.json()['id']
+
+    # 유저 중복 참여 체크
+    existed = session.query(Users).filter(Users.user_id == user_id).all()
+
+    # 새로운 id 삽입
+    if len(existed) < 1: 
+        newUser = Users(user_id = user_id)
+        session.add(newUser)
+        session.commit()
+        return {'message': 'new user'}
+    else:
+        return {'message': 'already existed'}
 

@@ -1,7 +1,7 @@
 const Modal = (props) => {
   const { message } = props;
   return (
-    <div>
+    <div className="modal">
       <p>{message}</p>
     </div>
   );
