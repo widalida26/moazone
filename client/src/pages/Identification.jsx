@@ -14,8 +14,10 @@ function Identification() {
   const location = useLocation();
   const KAKAO_CODE = location.search.split('=')[1];
 
-  const enterGuideA = '럭키 룰렛 이벤트는 카카오 로그인을 통해서만 진행할 수 있습니다';
-  const enterGuideB = '입력된 개인정보는 이벤트 중복 참여 방지를 위해서만 사용됩니다';
+  const additionalGuideList = [
+    '럭키 룰렛 이벤트는 카카오 로그인을 통해서만 진행할 수 있습니다',
+    '입력된 개인정보는 이벤트 중복 참여 방지를 위해서만 사용됩니다',
+  ];
 
   const getKakaoToken = () => {
     axios
@@ -51,8 +53,11 @@ function Identification() {
           <HiInformationCircle size="50" color="#1d98b6" />
         </div>
         <div className="input-guide">럭키 룰렛 이벤트 참여</div>
-        <div className="additional-guide">{enterGuideA}</div>
-        <div className="additional-guide">{enterGuideB}</div>
+        {additionalGuideList.map((value, i) => (
+          <div className="additional-guide" key={i}>
+            {value}
+          </div>
+        ))}
         <div className="identification-container">
           <KakaoLogin />
           {/* <NaverLogin /> */}

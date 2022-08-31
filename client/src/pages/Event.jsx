@@ -23,20 +23,6 @@ const Event = () => {
           </button>
         </div>
       </div>
-
-      {/* <div className="spin-content">
-        <div className="image-wrap">
-          <img className={isSpin} alt="spinner.png" src="/img/spinner.png" />
-        </div>
-        <div className="button-wrap">
-          <button className="spin-button" onClick={setSpinning}>
-            GO
-          </button>
-        </div>
-        <div className="arrow-wrap">
-          <div className="arrow"></div>
-        </div>
-      </div> */}
     </div>
   );
 };

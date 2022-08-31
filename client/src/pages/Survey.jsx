@@ -13,7 +13,6 @@ import {
   familyTypeList,
   houseTypeList,
   occupationTypeList,
-  // creditLevelList,
 } from '../components/List';
 
 // const { user_id } = route.params;
@@ -46,8 +45,10 @@ function Survey() {
 
   const navigate = useNavigate();
 
-  const enterGuideA = '모든 문항을 기재하여야 럭키 룰렛 이벤트 참여가 가능합니다';
-  const enterGuideB = '개인정보는 개인 식별이 불가능한 형태로 가공되어 사용됩니다';
+  const additionalGuideList = [
+    '모든 문항을 기재하여야 럭키 룰렛 이벤트 참여가 가능합니다',
+    '개인정보는 개인 식별이 불가능한 형태로 가공되어 사용됩니다',
+  ];
 
   const handleInputValue = (e, inputLength, setValue, isSeparated) => {
     // const value = Number(e.target.value.replace(/(^0+)/, ''));
@@ -95,13 +96,6 @@ function Survey() {
     };
 
     navigate('/consent', { state: { user_id: user_id, survey_data: surveyData } });
-    // axios
-    //   .post('http://localhost:8000/survey', { survey_data: surveyData })
-    //   .then((res) => {
-    //     console.log(res);
-    //     navigate('/consent');
-    //   })
-    //   .catch((err) => console.log(err));
   };
 
   return (
@@ -112,8 +106,11 @@ function Survey() {
           <HiInformationCircle size="50" color="#1d98b6" />
         </div>
         <div className="input-guide">럭키 룰렛 이벤트 참여</div>
-        <div className="additional-guide">{enterGuideA}</div>
-        <div className="additional-guide">{enterGuideB}</div>
+        {additionalGuideList.map((value, i) => (
+          <div className="additional-guide" key={i}>
+            {value}
+          </div>
+        ))}
         <RadioForm
           guide="성별을 선택해주세요"
           list={genderList}
@@ -215,12 +212,6 @@ function Survey() {
           dateFormat="yyyy.MM"
           noDate={true}
         />
-        {/* <RadioForm
-          guide="신용수준을 선택해주세요"
-          list={creditLevelList}
-          state={creditLevel}
-          onChange={(event) => handleRadio(event, setCreditLevel)}
-        /> */}
         <button className="enter-button" type="button" onClick={onClickEnter}>
           설문을 제출합니다
         </button>

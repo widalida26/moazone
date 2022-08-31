@@ -424,17 +424,18 @@ input {
 
 .spinner-container {
   width: 600px;
+  margin-left: 35px;
   margin-top: 30px;
   display: flex;
   /* justify-content: center;
   align-items: center; */
 }
-.spin-content {
+/* .spin-content {
   position: relative;
   min-width: 800px;
   margin: 20px auto;
   text-align: center;
-}
+} */
 
 .spinner {
   border: 10px solid gold;
