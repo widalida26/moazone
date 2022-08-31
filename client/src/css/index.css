@@ -1,4 +1,20 @@
 @font-face {
+  font-family: 'LeferiPoint-WhiteObliqueA';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff')
+    format('woff');
+}
+
+@font-face {
+  font-family: 'LeferiPoint-BlackA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 100;
@@ -77,6 +93,29 @@ input {
   letter-spacing: 1px;
 }
 
+.header-container {
+  filter: drop-shadow(2px 2px 2px #000);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+}
+
+.header-text {
+  margin-top: 40px;
+  color: rgb(255, 208, 0);
+  font-family: LeferiPoint-BlackA;
+  font-size: 1.5em;
+  font-style: italic;
+}
+
+.logo-container {
+  margin-top: -45px;
+  z-index: -1;
+}
+
 .modal-title {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   width: 100%;
@@ -121,8 +160,10 @@ input {
 
 .main-button {
   background: transparent !important;
+  cursor: pointer;
   margin-top: -600px !important;
   font-size: 1.2em !important;
+  text-shadow: 2px 2px 2px #000;
 }
 
 .main-button:hover {
@@ -133,6 +174,7 @@ input {
 .enter-container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -146,7 +188,7 @@ input {
   max-width: 800px;
   min-width: 600px;
   margin: 0px;
-  margin-top: 50px;
+  margin-top: 12px;
   margin-bottom: 30px;
   overflow: scroll;
   display: flex;
@@ -166,9 +208,9 @@ input {
   margin-top: 12px;
   margin-bottom: 20px;
   color: #1d98b6;
-  font-family: 'Noto Sans CJK KR';
+  font-family: 'LeferiPoint-WhiteObliqueA';
   font-style: normal;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 1.8em;
   letter-spacing: 2.5px;
   white-space: pre-line;
@@ -192,7 +234,7 @@ input {
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 0.9em;
 }
 
 .info-input {
@@ -293,6 +335,7 @@ input {
 
 .enter-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
+  cursor: pointer;
   width: 350px;
   min-height: 40px;
   border: none;
@@ -315,7 +358,7 @@ input {
   justify-content: center;
 }
 
-.info-guide {
+.consent-guide {
   background-color: snow;
   max-width: 1000px;
   min-width: 500px;
@@ -323,13 +366,12 @@ input {
   min-height: 400px;
   top: 50%;
   left: 50%;
-  margin-top: 100px;
+  margin-top: 20px;
   overflow-y: auto;
 }
 
-.info-img {
+.consent-img {
   width: 100%;
-  margin: 0px;
 }
 
 .check-container {
@@ -343,27 +385,21 @@ input {
 }
 
 .checkbox {
+  background-color: #2fde60;
   position: relative;
   width: 20px;
   height: 15px;
-  left: -243px;
+  left: -210px;
   bottom: -20px;
   /* padding-top: 10px; */
 }
 
-.consent-button {
-  background: linear-gradient(to right, #1c849e, #656ba3);
-  width: 350px;
-  height: 40px;
-  margin-top: 20px;
-  border: none;
-  color: snow;
-  font-size: 1.2em;
-  letter-spacing: 5px;
+.checkbox:hover {
+  background-color: #e0dd2a;
 }
 
-.consent-button:hover {
-  background: linear-gradient(to right, #e0dd2a, #2fde60);
+.consent-button {
+  margin-top: 20px;
 }
 
 .event-title {
@@ -374,6 +410,25 @@ input {
   color: rgb(27, 26, 44);
 }
 
+/* event page */
+.event-container {
+  /* background-color: snow; */
+  width: 50%;
+  margin: 0 auto;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-container {
+  width: 600px;
+  margin-top: 30px;
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+}
 .spin-content {
   position: relative;
   min-width: 800px;
@@ -381,16 +436,28 @@ input {
   text-align: center;
 }
 
-.button-wrap {
-  position: absolute;
+.spinner {
+  border: 10px solid gold;
+  border-radius: 500px;
+  filter: drop-shadow(5px 5px 5px #000);
+  width: 540px;
+}
+
+.spin-button-container {
+  align-self: center;
+  margin-left: -355px;
+  z-index: 1;
+  /* display: inline-block;
+  vertical-align: middle; */
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  transform: translate(-50%, -30%);
+  text-align: center; */
 }
 
 .spin-button {
-  background-color: rgb(85, 80, 221);
+  background-color: mediumturquoise;
   width: 150px;
   height: 150px;
   border-radius: 75px;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { HiInformationCircle } from 'react-icons/hi';
 import InputForm from '../components/InputForm';
 import RadioForm from '../components/RadioForm';
 import SelectForm from '../components/SelectForm';
 import DateForm from '../components/DateForm';
+import Header from '../components/Header';
 import {
   genderList,
   incomeTypeList,
@@ -16,7 +17,13 @@ import {
   // creditLevelList,
 } from '../components/List';
 
-function Enter() {
+// const { user_id } = route.params;
+
+function Survey() {
+  // console.log(user_id);
+  const { user_id } = useLocation().state;
+  console.log(user_id);
+
   // use state
   const [gender, setGender] = useState(genderList[0]);
   const [carOwnership, setCarOwnership] = useState('Yes');
@@ -40,8 +47,8 @@ function Enter() {
 
   const navigate = useNavigate();
 
-  const enterGuideA = '모든 문항을 기재하여야 Lucky Roullete 이벤트 참여가 가능합니다';
-  const enterGuideB = '입력된 개인정보는 개인 식별이 불가능한 형태로 가공되어 사용됩니다';
+  const enterGuideA = '모든 문항을 기재하여야 럭키 룰렛 이벤트 참여가 가능합니다';
+  const enterGuideB = '개인정보는 개인 식별이 불가능한 형태로 가공되어 사용됩니다';
 
   const handleInputValue = (e, inputLength, setValue, isSeparated) => {
     // const value = Number(e.target.value.replace(/(^0+)/, ''));
@@ -88,21 +95,24 @@ function Enter() {
       // credit: creditLevel,
     };
 
-    axios
-      .post('http://localhost:8000/survey', { survey_data: surveyData })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-
-    // navigate('/consent');
+    navigate('/consent', { state: { user_id: user_id, survey_data: surveyData } });
+    // axios
+    //   .post('http://localhost:8000/survey', { survey_data: surveyData })
+    //   .then((res) => {
+    //     console.log(res);
+    //     navigate('/consent');
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   return (
     <div className="enter-container">
+      <Header />
       <div className="form-container">
         <div className="info-icon">
           <HiInformationCircle size="50" color="#1d98b6" />
         </div>
-        <div className="input-guide">Lucky Roullete 이벤트 참여</div>
+        <div className="input-guide">럭키 룰렛 이벤트 참여</div>
         <div className="additional-guide">{enterGuideA}</div>
         <div className="additional-guide">{enterGuideB}</div>
         <RadioForm
@@ -213,11 +223,11 @@ function Enter() {
           onChange={(event) => handleRadio(event, setCreditLevel)}
         /> */}
         <button className="enter-button" type="button" onClick={onClickEnter}>
-          ENTER
+          설문을 제출합니다
         </button>
       </div>
     </div>
   );
 }
 
-export default Enter;
+export default Survey;

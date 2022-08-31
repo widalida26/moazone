@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
 
 const Event = () => {
   const [isSpin, setIsSpin] = useState('spinner off');
@@ -12,8 +13,18 @@ const Event = () => {
   };
 
   return (
-    <div>
-      <div className="spin-content">
+    <div className="event-container">
+      <Header />
+      <div className="spinner-container">
+        <img className={isSpin} alt="spinner.png" src="/img/spinner2.png" />
+        <div className="spin-button-container">
+          <button className="spin-button" onClick={setSpinning}>
+            GO
+          </button>
+        </div>
+      </div>
+
+      {/* <div className="spin-content">
         <div className="image-wrap">
           <img className={isSpin} alt="spinner.png" src="/img/spinner.png" />
         </div>
@@ -25,7 +36,7 @@ const Event = () => {
         <div className="arrow-wrap">
           <div className="arrow"></div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
