@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Header from '../components/Header';
+import Header from '../components//Header';
 
 const Consent = () => {
   const [isConsent, SetConsent] = useState(false);
   const navigate = useNavigate();
-
   const locState = useLocation().state;
   const user_id = locState.user_id;
   const survey_data = locState.survey_data;

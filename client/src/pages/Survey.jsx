@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import { HiInformationCircle } from 'react-icons/hi';
 import InputForm from '../components/InputForm';
 import RadioForm from '../components/RadioForm';
