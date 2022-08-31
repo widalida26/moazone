@@ -7,9 +7,10 @@ class Users(Base):
     __tablename__ = 'users'
     id = Column(Integer, nullable=False, autoincrement=True, primary_key=True)
     user_id = Column(TEXT)
+    consent = Column(Integer)
 
 class SurveyInfo(Base):
-    __tablename__ = 'survey'
+    __tablename__ = 'new'
     index = Column(Integer, nullable=False, autoincrement=True, primary_key=True)
     gender = Column(TEXT)
     car = Column(TEXT)

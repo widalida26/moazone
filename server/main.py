@@ -11,7 +11,6 @@ from connection import connect_engine
 from models import Users
 from models import SurveyInfo
 
-
 app = fastapi.FastAPI()
 
 origins = ["*"]
@@ -38,36 +37,14 @@ class UserInfo(BaseModel):
         orm_mode=True
 
 class SurveyItem(BaseModel):
+    user_id: str
     survey_data: object
-
-# class SurveyInfo(BaseModel):
-#     gender: str
-#     car: str
-#     reality: str
-#     child_num: int
-#     income_total: int
-#     income_type: str
-#     edu_type: str
-#     family_type: str
-#     house_type: str
-#     DAYS_BIRTH: int
-#     DAYS_EMPLOYED: int
-#     FLAG_MOBIL: int
-#     work_phone: int
-#     phone: int
-#     email: int
-#     occup_type: str
-#     family_size: int
-#     begin_month: int
-#     class Config:
-#         orm_mode=True
 
 def dday_calculator(day):
     today = datetime.now().date()
     target_date = datetime.strptime(day, '%Y-%m-%d').date()
     dday = target_date - today
     return dday.days
-
 
 @app.get('/')   
 def read_root():
@@ -97,26 +74,30 @@ async def kakao_auth(authItem: AuthItem):
 
     # id 예외처리 >>> 나중에 삭제
     if user_id == 2408139919:
-        return {'message': 'new user'}
+        return {'user_id': user_id}
 
     # 유저 중복 참여 체크
-    existed = session.query(Users).filter(Users.user_id == user_id).all()
+    # existed = session.query(Users).filter(Users.user_id == user_id, Users.consent == 1).all()
+    existed = session.query(Users).filter(Users.user_id == user_id, Users.consent == 1).all()
 
     # 새로운 id 삽입
     if len(existed) < 1: 
         newUser = Users(user_id = user_id)
         session.add(newUser)
         session.commit()
-        return {'message': 'new user'}
+        return {'user_id': user_id }
     else:
         return {'message': 'already existed'}
 
 @app.post('/survey')
-async def kakao_auth(surveyItem: SurveyItem):
+async def survey_info(surveyItem: SurveyItem):
+    # users 동의 여부 업데이트
+    session.query(Users).filter(Users.user_id == surveyItem.user_id).update({ Users.consent: 1 })
+    session.commit()
+    # new survey 데이터 삽입
     dt = surveyItem.survey_data
     survey_info = SurveyInfo(
-        # gender = dt['gender'][0],
-        gender = 'M',
+        gender = dt['gender'][0],
         car = dt['car'][0],
         reality = dt['reality'][0],
         child_num = int(dt['child_num']),
@@ -135,9 +116,9 @@ async def kakao_auth(surveyItem: SurveyItem):
         family_size = dt['family_size'],
         begin_month = dday_calculator(dt['begin_month'][0:10]),
     )
+
     session.add(survey_info)
     session.commit()
-    # surveyItem['gender']
 
 
 
