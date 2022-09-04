@@ -6,7 +6,7 @@ const NaverLogin = ({ setGetToken, setUserInfo }) => {
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
       clientId: process.env.REACT_APP_NAVER_CLIENT_ID,
-      callbackUrl: 'http://localhost:3000/token',
+      callbackUrl: `${process.env.REACT_APP_SERVER}/token`,
       isPopup: false,
       loginButton: { color: 'green', type: 3, height: 50 },
       callbackHandle: true,

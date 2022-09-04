@@ -19,7 +19,7 @@ const Consent = () => {
   const onClickAgree = () => {
     if (isConsent) {
       axios
-        .post('http://localhost:8000/survey', {
+        .post(`${process.env.REACT_APP_SERVER}/survey`, {
           user_id: user_id,
           survey_data: survey_data,
         })

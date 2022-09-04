@@ -9,7 +9,7 @@ const KakaoCode = () => {
 
   const getKakaoToken = () => {
     axios
-      .post('http://localhost:8000/auth/kakao', { authcode: KAKAO_CODE })
+      .post(`${process.env.REACT_APP_SERVER}/auth/kakao`, { authcode: KAKAO_CODE })
       .then((res) => {
         console.log(res.data.message);
         if (res.data.message === 'already existed') console.log(res);

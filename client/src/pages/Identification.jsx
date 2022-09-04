@@ -21,15 +21,13 @@ function Identification() {
 
   const getKakaoToken = () => {
     axios
-      .post('http://localhost:8000/auth/kakao', { authcode: KAKAO_CODE })
+      .post(`${process.env.REACT_APP_SERVER}/auth/kakao`, { authcode: KAKAO_CODE })
       .then((res) => {
-        console.log(res.data.message);
         if (res.data.message === 'already existed') {
           setIsExisted(true);
         }
         if (res.data.hasOwnProperty('user_id')) {
           const user_id = res.data.user_id;
-          console.log(user_id);
           navigate('/survey', { state: { user_id: user_id } });
         }
       })
