@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -7,6 +8,15 @@ const Main = () => {
 
   const onClickMainButton = () => {
     navigate('/identification');
+  };
+
+  const onClickTestButton = () => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -17,6 +27,7 @@ const Main = () => {
       <button className="main-button enter-button" onClick={onClickMainButton}>
         {mainButtonText}
       </button>
+      <button onClick={onClickTestButton}>test</button>
     </div>
   );
 };
