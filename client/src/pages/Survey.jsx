@@ -15,10 +15,7 @@ import {
   occupationTypeList,
 } from '../components/List';
 
-// const { user_id } = route.params;
-
 function Survey() {
-  // console.log(user_id);
   const { user_id } = useLocation().state;
   console.log(user_id);
 
@@ -51,7 +48,6 @@ function Survey() {
   ];
 
   const handleInputValue = (e, inputLength, setValue, isSeparated) => {
-    // const value = Number(e.target.value.replace(/(^0+)/, ''));
     const regex = new RegExp(`^[0-9|,]{0,${inputLength}}$`);
     if (regex.test(e.target.value)) {
       if (!isSeparated) {

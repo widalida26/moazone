@@ -21,7 +21,7 @@ function Identification() {
 
   const getKakaoToken = () => {
     axios
-      .post(`${process.env.REACT_APP_SERVER}/auth/kakao`, { authcode: KAKAO_CODE })
+      .post(`${process.env.REACT_APP_SERVER}/auth`, { authcode: KAKAO_CODE })
       .then((res) => {
         if (res.data.message === 'already existed') {
           setIsExisted(true);
