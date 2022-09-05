@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-18.04
+
     steps:
       - name: Checkout source code.
         uses: actions/checkout@master
@@ -14,6 +15,7 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v1
         with:
+          working-directory: ./client
           path: node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -22,9 +24,13 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+        with:
+          working-directory: ./client
 
       - name: Build
         run: npm run build
+        with:
+          working-directory: ./client
 
       - name: Deploy
         env:
@@ -35,3 +41,5 @@ jobs:
             --recursive \
             --region ap-northeast-2 \
             build s3://moa92.shop
+        with:
+          working-directory: ./client
