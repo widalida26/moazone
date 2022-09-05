@@ -24,13 +24,11 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        with:
-          working-directory: ./client
+        working-directory: ./client
 
       - name: Build
         run: npm run build
-        with:
-          working-directory: ./client
+        working-directory: ./client
 
       - name: Deploy
         env:
@@ -41,5 +39,4 @@ jobs:
             --recursive \
             --region ap-northeast-2 \
             build s3://moa92.shop
-        with:
-          working-directory: ./client
+        working-directory: ./client
