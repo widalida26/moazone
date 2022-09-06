@@ -29,6 +29,8 @@ jobs:
       - name: Build
         run: CI=false npm run build
         working-directory: ./client
+        env:
+          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
 
       - name: Deploy
         env:
