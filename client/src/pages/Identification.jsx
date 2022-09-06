@@ -24,7 +24,11 @@ function Identification() {
 
   const onClickLoginButton = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER}/auth`, { userId })
+      .get(`${process.env.REACT_APP_SERVER}/auth`, {
+        params: {
+          user_id: userId,
+        },
+      })
       .then((res) => {
         if (res.data.hasOwnProperty('user_id')) {
           const user_id = res.data.user_id;
