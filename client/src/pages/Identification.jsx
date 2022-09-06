@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { HiInformationCircle } from 'react-icons/hi';
 import axios from 'axios';
-import KakaoLogin from '../components/KakaoLogin';
 import Modal from '../components/Modal';
 import Header from '../components/Header';
+import InputForm from '../components/InputForm';
 
 function Identification() {
   const navigate = useNavigate();
 
+  const [userId, setUserId] = useState('');
   const [isExisted, setIsExisted] = useState(false);
 
-  const location = useLocation();
-  const KAKAO_CODE = location.search.split('=')[1];
-
   const additionalGuideList = [
-    '럭키 룰렛 이벤트는 카카오 로그인을 통해서만 진행할 수 있습니다',
-    '입력된 개인정보는 이벤트 중복 참여 방지를 위해서만 사용됩니다',
+    '럭키 룰렛 이벤트는 발송된 ID를 통해서만 진행할 수 있습니다',
+    '입력된 정보는 개인 식별 정보없이 익명으로 처리됩니다',
   ];
 
-  const getKakaoToken = () => {
+  const handleUserId = (e) => {
+    setUserId(e.target.value);
+  };
+
+  const onClickLoginButton = () => {
     axios
-      .post(`${process.env.REACT_APP_SERVER}/auth`, { authcode: KAKAO_CODE })
+      .post(`${process.env.REACT_APP_SERVER}/auth`, { user_id: userId })
       .then((res) => {
         if (res.data.message === 'already existed') {
           setIsExisted(true);
@@ -33,11 +35,6 @@ function Identification() {
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    if (!location.search) return;
-    getKakaoToken();
-  }, []);
 
   const onClickModalButton = () => {
     navigate('/');
@@ -57,8 +54,18 @@ function Identification() {
           </div>
         ))}
         <div className="identification-container">
-          <KakaoLogin />
-          {/* <NaverLogin /> */}
+          <InputForm
+            guide="사전에 발송된 ID를 입력해주세요"
+            value={userId}
+            onChange={(event) => handleUserId(event)}
+          />
+          <button
+            className="enter-button login-button"
+            type="button"
+            onClick={onClickLoginButton}
+          >
+            LOGIN
+          </button>
         </div>
       </div>
       {isExisted ? (

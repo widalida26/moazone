@@ -161,6 +161,28 @@
 //     setValue(selected);
 //   };
 
+// 카카오 로그인
+// const location = useLocation();
+// const KAKAO_CODE = location.search.split('=')[1];
+// const getKakaoToken = () => {
+//   axios
+//     .post(`${process.env.REACT_APP_SERVER}/auth`, { authcode: KAKAO_CODE })
+//     .then((res) => {
+//       if (res.data.message === 'already existed') {
+//         setIsExisted(true);
+//       }
+//       if (res.data.hasOwnProperty('user_id')) {
+//         const user_id = res.data.user_id;
+//         navigate('/survey', { state: { user_id: user_id } });
+//       }
+//     })
+//     .catch((err) => console.log(err));
+// };
+// useEffect(() => {
+//   if (!location.search) return;
+//   getKakaoToken();
+// }, []);
+
 //   const onClickEnter = () => {
 //     console.log('enter');
 //     navigate('/consent');
