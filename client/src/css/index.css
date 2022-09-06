@@ -73,7 +73,7 @@ input {
   text-align: center;
 }
 
-.modal {
+.modal-container {
   background-color: snow;
   /* outline: 2px solid cadetblue;
   outline-offset: 0px; */
@@ -116,7 +116,7 @@ input {
   z-index: -1;
 }
 
-.modal-title {
+.modal-header {
   background: linear-gradient(to right, #e0dd2a, #2fde60);
   width: 100%;
   height: 30px;
@@ -131,12 +131,20 @@ input {
   font-size: 0.8em;
 }
 
+.modal-text {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  font-size: 0.85em;
+}
+
 .modal-button {
   background: linear-gradient(to right, #2bc0e4, #9198e5);
   border: none;
   width: 200px;
   height: 30px;
   margin-bottom: 30px;
+  z-index: 100;
   color: white;
 }
 

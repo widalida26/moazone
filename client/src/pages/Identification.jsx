@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiInformationCircle } from 'react-icons/hi';
 import axios from 'axios';
-import Modal from '../components/Modal';
+// import Modal from '../components/Modal';
+import Popup from '../components/Popup';
 import Header from '../components/Header';
 import InputForm from '../components/InputForm';
 
@@ -10,7 +11,7 @@ function Identification() {
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState('');
-  const [isExisted, setIsExisted] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const additionalGuideList = [
     '럭키 룰렛 이벤트는 발송된 ID를 통해서만 진행할 수 있습니다',
@@ -25,18 +26,18 @@ function Identification() {
     axios
       .post(`${process.env.REACT_APP_SERVER}/auth`, { user_id: userId })
       .then((res) => {
-        if (res.data.message === 'already existed') {
-          setIsExisted(true);
-        }
         if (res.data.hasOwnProperty('user_id')) {
           const user_id = res.data.user_id;
           navigate('/survey', { state: { user_id: user_id } });
+        } else {
+          console.log('not a target');
+          setModalVisible(true);
         }
       })
       .catch((err) => console.log(err));
   };
 
-  const onClickModalButton = () => {
+  const onClickPopupButton = () => {
     navigate('/');
   };
 
@@ -68,9 +69,11 @@ function Identification() {
           </button>
         </div>
       </div>
-      {isExisted ? (
-        <Modal message="이미 이벤트에 참여하셨습니다" onClick={onClickModalButton} />
-      ) : null}
+      <Popup
+        message="본 ID로는 이벤트에 참여할 수 없습니다.이벤트 대상자가 아니거나 잘못 입력된 ID입니다"
+        visible={modalVisible}
+        onClickPopupButton={onClickPopupButton}
+      />
     </div>
   );
 }
