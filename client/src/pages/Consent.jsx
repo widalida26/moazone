@@ -2,11 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../components//Header';
-import Modal from '../components/Modal';
+import Popup from '../components/Popup';
 
 const Consent = () => {
   const [isConsent, SetConsent] = useState(false);
-  const [consentModal, setConsentModal] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const navigate = useNavigate();
   const locState = useLocation().state;
   const user_id = locState.user_id;
@@ -28,12 +28,12 @@ const Consent = () => {
         })
         .catch((err) => console.log(err));
     } else {
-      setConsentModal(true);
+      setModalVisible(true);
     }
   };
 
   const handleConsentModal = () => {
-    setConsentModal(false);
+    setModalVisible(false);
   };
 
   return (
@@ -54,12 +54,11 @@ const Consent = () => {
           럭키 룰렛 돌리기
         </button>
       </div>
-      {consentModal ? (
-        <Modal
-          message="개인정보 수집 및 활용에 체크해주세요"
-          onClick={handleConsentModal}
-        />
-      ) : null}
+      <Popup
+        message="개인정보 수집 및 활용에 체크해주세요"
+        visible={modalVisible}
+        onClickPopupButton={handleConsentModal}
+      />
     </div>
   );
 };
