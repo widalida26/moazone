@@ -30,7 +30,7 @@ function Identification() {
         },
       })
       .then((res) => {
-        if (res.data.message === 'login succeed') {
+        if (res.data.message === 'login success') {
           console.log('success');
           // const user_id = res.data.user_id;
           // navigate('/survey', { state: { user_id: user_id } });
