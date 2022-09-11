@@ -10,29 +10,30 @@ import InputForm from '../components/InputForm';
 function Identification() {
   const navigate = useNavigate();
 
-  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
   const additionalGuideList = [
-    '럭키 룰렛 이벤트는 발송된 ID를 통해서만 진행할 수 있습니다',
-    '입력된 정보는 개인 식별 정보없이 익명으로 처리됩니다',
+    '럭키 룰렛 이벤트는 안내가 발송된 email 주소를 통해서 진행가능합니다',
+    '입력된 정보는 이벤트 참여자 확인 이외의 목적으로 사용되지 않습니다',
   ];
 
   const handleUserId = (e) => {
-    setUserId(e.target.value);
+    setEmail(e.target.value);
   };
 
   const onClickLoginButton = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER}/auth`, {
+      .get(`${process.env.REACT_APP_SERVER}/login`, {
         params: {
-          user_id: userId,
+          email: email,
         },
       })
       .then((res) => {
-        if (res.data.hasOwnProperty('user_id')) {
-          const user_id = res.data.user_id;
-          navigate('/survey', { state: { user_id: user_id } });
+        if (res.data.message === 'login succeed') {
+          console.log('success');
+          // const user_id = res.data.user_id;
+          // navigate('/survey', { state: { user_id: user_id } });
         } else {
           setModalVisible(true);
         }
@@ -59,8 +60,8 @@ function Identification() {
         ))}
         <div className="identification-container">
           <InputForm
-            guide="사전에 발송된 ID를 입력해주세요"
-            value={userId}
+            guide="이벤트 안내를 수신한 email 주소를 입력해주세요"
+            value={email}
             onChange={(event) => handleUserId(event)}
           />
           <button
@@ -73,7 +74,7 @@ function Identification() {
         </div>
       </div>
       <Popup
-        message="본 ID로는 이벤트에 참여할 수 없습니다.이벤트 대상자가 아니거나 잘못 입력된 ID입니다"
+        message="본 email로는 이벤트에 참여할 수 없습니다. 이벤트 대상자가 아니거나 잘못 입력된 email입니다"
         visible={modalVisible}
         onClickPopupButton={onClickPopupButton}
       />
