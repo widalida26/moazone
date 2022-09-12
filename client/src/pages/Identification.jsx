@@ -30,7 +30,7 @@ function Identification() {
   };
 
   const onClickLoginButton = () => {
-    if (!modalVisible) {
+    if (!authCodeInputVisible) {
       axios
         .get(`${process.env.REACT_APP_SERVER}/login`, {
           params: {
@@ -51,7 +51,7 @@ function Identification() {
       axios
         .post(`${process.env.REACT_APP_SERVER}/challenge`, challengeData)
         .then((res) => {
-          console.log(res);
+          showAuthCodeInputVisible(false);
         })
         .catch((err) => console.log(err));
     }
