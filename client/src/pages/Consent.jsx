@@ -28,7 +28,7 @@ const Consent = () => {
             user_id: username,
             survey_data: surveyData,
           },
-          { headers: { Authorization: `Bearer ${accessToken}` } }
+          { headers: { Authorization: accessToken }, withCredentials: true }
         )
         .then((res) => {
           navigate('/event');
