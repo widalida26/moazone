@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout source code.
@@ -24,11 +24,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
-        working-directory: ./client
 
       - name: Build
         run: CI=false npm run build
-        working-directory: ./client
         env:
           REACT_APP_AUTH: ${{ secrets.REACT_APP_AUTH }}
           REACT_APP_API: ${{ secrets.REACT_APP_API }}
@@ -42,4 +40,3 @@ jobs:
             --recursive \
             --region ap-northeast-2 \
             build s3://moa92.shop
-        working-directory: ./client
