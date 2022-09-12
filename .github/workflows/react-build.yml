@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+defaults:
+  run:
+    working-directory: ./client
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -15,7 +19,7 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v1
         with:
-          path: ./client/node_modules
+          path: ./node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-
@@ -23,16 +27,13 @@ jobs:
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
-        with:
-          path: ./client
 
       - name: Build
         run: CI=false npm run build
+
         env:
           REACT_APP_AUTH: ${{ secrets.REACT_APP_AUTH }}
           REACT_APP_API: ${{ secrets.REACT_APP_API }}
-        with:
-          path: ./client
 
       - name: Deploy
         env:
@@ -43,5 +44,3 @@ jobs:
             --recursive \
             --region ap-northeast-2 \
             build s3://moa92.shop
-        with:
-          path: ./client
