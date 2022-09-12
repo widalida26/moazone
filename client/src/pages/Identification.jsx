@@ -6,6 +6,8 @@ import Popup from '../components/Popup';
 import Header from '../components/Header';
 import InputForm from '../components/InputForm';
 
+let challengeData = {};
+
 function Identification() {
   const navigate = useNavigate();
 
@@ -13,8 +15,6 @@ function Identification() {
   const [authCodeInputVisible, showAuthCodeInputVisible] = useState(false);
   const [authCode, setAuthCode] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-
-  let challengeData = {};
 
   const additionalGuideList = [
     '럭키 룰렛 이벤트는 안내가 발송된 email 주소를 통해서 진행가능합니다',
