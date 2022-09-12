@@ -7,10 +7,13 @@ import Popup from '../components/Popup';
 const Consent = () => {
   const [isConsent, SetConsent] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
   const navigate = useNavigate();
+
   const locState = useLocation().state;
-  const user_id = locState.user_id;
-  const survey_data = locState.survey_data;
+  const username = locState.username;
+  const accessToken = locState.accessToken;
+  const surveyData = locState.surveyData;
 
   const handleCheckbox = (e) => {
     SetConsent(!isConsent);
@@ -19,10 +22,14 @@ const Consent = () => {
   const onClickAgree = () => {
     if (isConsent) {
       axios
-        .post(`${process.env.REACT_APP_SERVER}/survey`, {
-          user_id: user_id,
-          survey_data: survey_data,
-        })
+        .post(
+          `${process.env.REACT_APP_SERVER}/survey`,
+          {
+            user_id: username,
+            survey_data: surveyData,
+          },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        )
         .then((res) => {
           navigate('/event');
         })

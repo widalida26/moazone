@@ -60,9 +60,14 @@ function Identification() {
         challengeData: challengeData,
       })
       .then((res) => {
-        console.log(res);
         showAuthCodeInputVisible(false);
-        //navigate('/survey');
+
+        let username = res.data.username;
+        let token = res.data.accessToken;
+
+        navigate('/survey', {
+          state: { username: username, accessToken: token },
+        });
       })
       .catch((err) => console.log(err));
   };

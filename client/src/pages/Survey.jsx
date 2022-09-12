@@ -16,8 +16,8 @@ import {
 } from '../components/List';
 
 function Survey() {
-  const { user_id } = useLocation().state;
-  console.log(user_id);
+  const { username } = useLocation().state;
+  const { accessToken } = useLocation().state;
 
   // use state
   const [gender, setGender] = useState(genderList[0]);
@@ -91,7 +91,9 @@ function Survey() {
       // credit: creditLevel,
     };
 
-    navigate('/consent', { state: { user_id: user_id, survey_data: surveyData } });
+    navigate('/consent', {
+      state: { username: username, accessToken: accessToken, surveyData: surveyData },
+    });
   };
 
   return (
