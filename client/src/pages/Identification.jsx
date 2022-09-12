@@ -6,7 +6,11 @@ import Popup from '../components/Popup';
 import Header from '../components/Header';
 import InputForm from '../components/InputForm';
 
-let challengeData = {};
+let challengeData = {
+  username: '',
+  session: '',
+  answer: '',
+};
 
 function Identification() {
   const navigate = useNavigate();
@@ -49,6 +53,7 @@ function Identification() {
         .catch((err) => console.log(err));
     } else {
       challengeData['answer'] = authCode;
+      console.log(challengeData);
       axios
         .post(`${process.env.REACT_APP_SERVER}/challenge`, {
           challengeData: challengeData,
