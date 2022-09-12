@@ -49,7 +49,9 @@ function Identification() {
         .catch((err) => console.log(err));
     } else {
       axios
-        .post(`${process.env.REACT_APP_SERVER}/challenge`, challengeData)
+        .post(`${process.env.REACT_APP_SERVER}/challenge`, {
+          challengeData: challengeData,
+        })
         .then((res) => {
           showAuthCodeInputVisible(false);
         })
