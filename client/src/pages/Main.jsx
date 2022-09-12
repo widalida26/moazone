@@ -12,7 +12,7 @@ const Main = () => {
 
   const onClickTestButton = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER}`)
+      .get(`${process.env.REACT_APP_AUTH}`)
       .then((res) => {
         console.log(res);
       })

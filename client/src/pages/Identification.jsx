@@ -35,7 +35,7 @@ function Identification() {
 
   const onClickAuthButton = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER}/login`, {
+      .get(`${process.env.REACT_APP_AUTH}/login`, {
         params: {
           email: email,
         },
@@ -56,7 +56,7 @@ function Identification() {
     challengeData['answer'] = authCode;
     console.log(challengeData);
     axios
-      .post(`${process.env.REACT_APP_SERVER}/challenge`, {
+      .post(`${process.env.REACT_APP_AUTH}/challenge`, {
         challengeData: challengeData,
       })
       .then((res) => {

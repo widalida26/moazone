@@ -30,7 +30,8 @@ jobs:
         run: CI=false npm run build
         working-directory: ./client
         env:
-          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
+          REACT_APP_AUTH: ${{ secrets.REACT_APP_AUTH }}
+          REACT_APP_API: ${{ secrets.REACT_APP_API }}
 
       - name: Deploy
         env:
