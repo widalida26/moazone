@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiInformationCircle } from 'react-icons/hi';
 import axios from 'axios';
-// import Modal from '../components/Modal';
 import Popup from '../components/Popup';
 import Header from '../components/Header';
 import InputForm from '../components/InputForm';
@@ -11,6 +10,8 @@ function Identification() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
+  const [authCodeInputVisible, showAuthCodeInputVisible] = useState(false);
+  const [authCode, setAuthCode] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
   const additionalGuideList = [
@@ -18,27 +19,37 @@ function Identification() {
     '입력된 정보는 이벤트 참여자 확인 이외의 목적으로 사용되지 않습니다',
   ];
 
-  const handleUserId = (e) => {
+  const handleEmail = (e) => {
     setEmail(e.target.value);
   };
 
+  const handleAuthCode = (e) => {
+    setAuthCode(e.target.value);
+  };
+
   const onClickLoginButton = () => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER}/login`, {
-        params: {
-          email: email,
-        },
-      })
-      .then((res) => {
-        if (res.data.message === 'login success') {
-          console.log('success');
-          // const user_id = res.data.user_id;
-          // navigate('/survey', { state: { user_id: user_id } });
-        } else {
-          setModalVisible(true);
-        }
-      })
-      .catch((err) => console.log(err));
+    if (!modalVisible) {
+      axios
+        .get(`${process.env.REACT_APP_SERVER}/login`, {
+          params: {
+            email: email,
+          },
+        })
+        .then((res) => {
+          if (res.data.message === 'login success') {
+            console.log('success');
+            console.log(res.data);
+            // const user_id = res.data.user_id;
+            // navigate('/survey', { state: { user_id: user_id } });
+          } else {
+            setModalVisible(true);
+          }
+        })
+        .catch((err) => console.log(err));
+      showAuthCodeInputVisible(true);
+    } else {
+      console.log('aa');
+    }
   };
 
   const onClickPopupButton = () => {
@@ -62,14 +73,21 @@ function Identification() {
           <InputForm
             guide="이벤트 안내를 수신한 email 주소를 입력해주세요"
             value={email}
-            onChange={(event) => handleUserId(event)}
+            onChange={(event) => handleEmail(event)}
           />
+          {authCodeInputVisible ? (
+            <InputForm
+              guide="입력하신 email 주소로 발송된 인증번호를 입력해주세요"
+              value={authCode}
+              onChange={(event) => handleAuthCode(event)}
+            />
+          ) : null}
           <button
             className="enter-button login-button"
             type="button"
             onClick={onClickLoginButton}
           >
-            LOGIN
+            입력
           </button>
         </div>
       </div>
