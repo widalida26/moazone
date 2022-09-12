@@ -48,6 +48,7 @@ function Identification() {
         })
         .catch((err) => console.log(err));
     } else {
+      challengeData['answer'] = authCode;
       axios
         .post(`${process.env.REACT_APP_SERVER}/challenge`, {
           challengeData: challengeData,
