@@ -33,38 +33,38 @@ function Identification() {
     setAuthCode(e.target.value);
   };
 
-  const onClickLoginButton = () => {
-    if (!authCodeInputVisible) {
-      axios
-        .get(`${process.env.REACT_APP_SERVER}/login`, {
-          params: {
-            email: email,
-          },
-        })
-        .then((res) => {
-          if (res.data.message === 'login success') {
-            challengeData['username'] = res.data.ChallengeParameters.USERNAME;
-            challengeData['session'] = res.data.Session;
-            showAuthCodeInputVisible(true);
-          } else {
-            setModalVisible(true);
-          }
-        })
-        .catch((err) => console.log(err));
-    } else {
-      challengeData['answer'] = authCode;
-      console.log(challengeData);
-      axios
-        .post(`${process.env.REACT_APP_SERVER}/challenge`, {
-          challengeData: challengeData,
-        })
-        .then((res) => {
-          console.log(res);
-          showAuthCodeInputVisible(false);
-          //navigate('/survey');
-        })
-        .catch((err) => console.log(err));
-    }
+  const onClickAuthButton = () => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER}/login`, {
+        params: {
+          email: email,
+        },
+      })
+      .then((res) => {
+        if (res.data.message === 'login success') {
+          challengeData['username'] = res.data.ChallengeParameters.USERNAME;
+          challengeData['session'] = res.data.Session;
+          showAuthCodeInputVisible(true);
+        } else {
+          setModalVisible(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const onClickConfirmButton = () => {
+    challengeData['answer'] = authCode;
+    console.log(challengeData);
+    axios
+      .post(`${process.env.REACT_APP_SERVER}/challenge`, {
+        challengeData: challengeData,
+      })
+      .then((res) => {
+        console.log(res);
+        showAuthCodeInputVisible(false);
+        //navigate('/survey');
+      })
+      .catch((err) => console.log(err));
   };
 
   const onClickPopupButton = () => {
@@ -90,20 +90,29 @@ function Identification() {
             value={email}
             onChange={(event) => handleEmail(event)}
           />
-          {authCodeInputVisible ? (
-            <InputForm
-              guide="입력하신 email 주소로 발송된 인증번호를 입력해주세요"
-              value={authCode}
-              onChange={(event) => handleAuthCode(event)}
-            />
-          ) : null}
           <button
             className="enter-button login-button"
             type="button"
-            onClick={onClickLoginButton}
+            onClick={onClickAuthButton}
           >
-            입력
+            인증
           </button>
+          {authCodeInputVisible ? (
+            <div>
+              <InputForm
+                guide="입력하신 email 주소로 발송된 인증번호를 입력해주세요"
+                value={authCode}
+                onChange={(event) => handleAuthCode(event)}
+              />
+              <button
+                className="enter-button login-button"
+                type="button"
+                onClick={onClickConfirmButton}
+              >
+                확인
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
       <Popup

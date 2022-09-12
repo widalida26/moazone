@@ -179,7 +179,8 @@ input {
 }
 
 .login-button {
-  margin-top: 30px !important;
+  margin-top: 20px !important;
+  margin-bottom: 5px !important;
 }
 
 .enter-container {
