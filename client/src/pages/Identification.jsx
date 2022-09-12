@@ -14,7 +14,7 @@ function Identification() {
   const [authCode, setAuthCode] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
-  let challengeBody = {};
+  let challengeData = {};
 
   const additionalGuideList = [
     '럭키 룰렛 이벤트는 안내가 발송된 email 주소를 통해서 진행가능합니다',
@@ -39,12 +39,8 @@ function Identification() {
         })
         .then((res) => {
           if (res.data.message === 'login success') {
-            challengeBody['ChallengeResponses'] = {};
-            challengeBody.ChallengeResponses['USERNAME'] =
-              res.data.ChallengeParameters.USERNAME;
-            challengeBody['session'] = res.data.Session;
-            console.log('success');
-            console.log(challengeBody);
+            challengeData['username'] = res.data.ChallengeParameters.USERNAME;
+            challengeData['session'] = res.data.Session;
             showAuthCodeInputVisible(true);
           } else {
             setModalVisible(true);
@@ -52,7 +48,12 @@ function Identification() {
         })
         .catch((err) => console.log(err));
     } else {
-      console.log('aa');
+      axios
+        .post(`${process.env.REACT_APP_SERVER}/challenge`, challengeData)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
     }
   };
 
