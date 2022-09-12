@@ -59,7 +59,9 @@ function Identification() {
           challengeData: challengeData,
         })
         .then((res) => {
+          console.log(res);
           showAuthCodeInputVisible(false);
+          //navigate('/survey');
         })
         .catch((err) => console.log(err));
     }
