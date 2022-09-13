@@ -62,7 +62,7 @@ function Identification() {
       .then((res) => {
         console.log('success');
         console.log(res);
-        if (res.data.hasOwnProperty('accssToken')) {
+        if (res.data.hasOwnProperty('accessToken')) {
           showAuthCodeInputVisible(false);
 
           let username = res.data.username;
