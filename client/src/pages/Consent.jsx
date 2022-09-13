@@ -23,12 +23,12 @@ const Consent = () => {
     if (isConsent) {
       axios
         .post(
-          `${process.env.REACT_APP_AUTH}/survey`,
+          `${process.env.REACT_APP_API}/survey`,
           {
             user_id: username,
             survey_data: surveyData,
-          }
-          // { headers: { Authorization: accessToken } }
+          },
+          { headers: { Authorization: accessToken } }
         )
         .then((res) => {
           navigate('/event');
