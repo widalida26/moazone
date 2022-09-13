@@ -60,14 +60,19 @@ function Identification() {
         challengeData: challengeData,
       })
       .then((res) => {
-        showAuthCodeInputVisible(false);
+        console.log(res);
+        if (res.data.hasOwnProperty('accssToken')) {
+          showAuthCodeInputVisible(false);
 
-        let username = res.data.username;
-        let token = res.data.accessToken;
+          let username = res.data.username;
+          let token = res.data.accessToken;
 
-        navigate('/survey', {
-          state: { username: username, accessToken: token },
-        });
+          navigate('/survey', {
+            state: { username: username, accessToken: token },
+          });
+        } else {
+          setModalVisible(true);
+        }
       })
       .catch((err) => console.log(err));
   };
