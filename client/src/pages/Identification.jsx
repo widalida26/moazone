@@ -100,12 +100,12 @@ function Identification() {
             type="button"
             onClick={onClickAuthButton}
           >
-            인증
+            인증메일 발송
           </button>
           {authCodeInputVisible ? (
             <div>
               <InputForm
-                guide="입력하신 email 주소로 발송된 인증번호를 입력해주세요"
+                guide="입력하신 email 주소로 발송된 인증코드를 입력해주세요"
                 value={authCode}
                 onChange={(event) => handleAuthCode(event)}
               />
@@ -114,7 +114,7 @@ function Identification() {
                 type="button"
                 onClick={onClickConfirmButton}
               >
-                확인
+                인증코드 확인
               </button>
             </div>
           ) : null}

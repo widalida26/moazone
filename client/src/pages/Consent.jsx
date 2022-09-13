@@ -23,7 +23,7 @@ const Consent = () => {
     if (isConsent) {
       axios
         .post(
-          `${process.env.REACT_APP_API}/survey`,
+          `${process.env.REACT_APP_AUTH}/survey`,
           {
             user_id: username,
             survey_data: surveyData,
