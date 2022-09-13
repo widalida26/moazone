@@ -60,6 +60,7 @@ function Identification() {
         challengeData: challengeData,
       })
       .then((res) => {
+        console.log('success');
         console.log(res);
         if (res.data.hasOwnProperty('accssToken')) {
           showAuthCodeInputVisible(false);
@@ -71,6 +72,7 @@ function Identification() {
             state: { username: username, accessToken: token },
           });
         } else {
+          console.log('fail');
           setModalVisible(true);
         }
       })
