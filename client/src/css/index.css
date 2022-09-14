@@ -51,8 +51,6 @@
 }
 
 body {
-  /* background: linear-gradient(to right, #720f93, #3134f6),
-    url('../styles/textures/texture.png'); */
   background: linear-gradient(to right, #3877ec, #764fc3),
     url('../styles/textures/texture.png');
   background-size: cover;
