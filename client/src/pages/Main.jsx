@@ -27,7 +27,6 @@ const Main = () => {
       <button className="main-button enter-button" onClick={onClickMainButton}>
         {mainButtonText}
       </button>
-      <button onClick={onClickTestButton}>test16:08</button>
     </div>
   );
 };
