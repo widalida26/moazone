@@ -34,6 +34,7 @@ function Identification() {
   };
 
   const onClickAuthButton = () => {
+    console.log(process.env.REACT_APP_AUTH);
     axios
       .get(`${process.env.REACT_APP_AUTH}/login`, {
         params: {
