@@ -11,7 +11,6 @@ const KakaoCode = () => {
     axios
       .post(`${process.env.REACT_APP_SERVER}/auth/kakao`, { authcode: KAKAO_CODE })
       .then((res) => {
-        console.log(res.data.message);
         if (res.data.message === 'already existed') console.log(res);
       })
       .catch((err) => console.log(err));
