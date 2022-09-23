@@ -1,2 +1,2 @@
 # moazone_client
-Questionnaire Web Client for Moazone Project
+questionnaire web client for Moazone project
