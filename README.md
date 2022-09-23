@@ -2,6 +2,7 @@
 questionnaire web client for Moazone project
 
 ## login with cognito
-![ezgif-1-6e0d0dfaad](https://user-images.githubusercontent.com/89366599/191943219-9ab9e9a3-af9e-4467-b5f9-8abe7a09d820.gif)
+![Honeycam 2022-09-16 03-07-24 (1)](https://user-images.githubusercontent.com/89366599/191946237-e53bdaaa-38a8-45a5-a0c3-b6bfc0d34e64.gif)
 
 ## survey
+![Honeycam 2022-09-16 03-07-24](https://user-images.githubusercontent.com/89366599/191946241-66550a70-7168-49f7-8fdb-eee749db7e4e.gif)
